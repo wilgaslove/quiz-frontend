@@ -26,6 +26,7 @@ const logout = () => {
 </template>
 
 <style scoped>
+
 .dashboard {
   max-width: 400px;
   margin: 80px auto;
