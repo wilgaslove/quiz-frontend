@@ -1,18 +1,37 @@
 import { defineStore } from "pinia";
 import api from "@/services/api";
 
+interface LoginData {
+  email: string;
+  password: string;
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    user: null,
-    token: localStorage.getItem("token") || null
+    user: null as User | null,
+    token: localStorage.getItem("token") as string | null
   }),
 
+  getters: {
+    isAuthenticated: (state) => !!state.token
+  },
+
   actions: {
-    async login(data) {
+    async login(data: LoginData) {
       const res = await api.post("/auth/login", data);
+
       this.token = res.data.token;
       this.user = res.data.user;
-      localStorage.setItem("token", this.token);
+
+      if (this.token) {
+        localStorage.setItem("token", this.token);
+      }
     },
 
     logout() {
