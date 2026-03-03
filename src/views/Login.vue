@@ -1,18 +1,3 @@
-<template>
-  <div class="login">
-    <h2>Connexion</h2>
-
-    <form @submit.prevent="handleLogin">
-      <input v-model="email" type="email" placeholder="Email" required />
-      <input v-model="password" type="password" placeholder="Mot de passe" required />
-
-      <button type="submit">Se connecter</button>
-    </form>
-
-    <p v-if="error" class="error">{{ error }}</p>
-  </div>
-</template>
-
 <script setup>
 import { ref } from "vue";
 import { useAuthStore } from "@/stores/auth";
@@ -38,6 +23,23 @@ const handleLogin = async () => {
   }
 };
 </script>
+
+<template>
+  <div class="login">
+    <h2>Connexion</h2>
+
+    <form @submit.prevent="handleLogin">
+      <input v-model="email" type="email" placeholder="Email" required />
+      <input v-model="password" type="password" placeholder="Mot de passe" required />
+
+      <button type="submit">Se connecter</button>
+    </form>
+
+    <p v-if="error" class="error">{{ error }}</p>
+  </div>
+</template>
+
+
 
 <style scoped>
 .login {
