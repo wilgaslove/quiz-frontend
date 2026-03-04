@@ -1,39 +1,39 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router"
+import { onMounted } from "vue"
+import { useQuizStore } from "@/stores/quiz"
 
-const router = useRouter()
+const quizStore = useQuizStore()
 
-const user = localStorage.getItem("user")
-
-const logout = () => {
-  localStorage.removeItem("token")
-  localStorage.removeItem("user")
-  router.push("/login")
-}
+onMounted(() => {
+  quizStore.fetchQuizzes()
+})
 </script>
 
 <template>
   <div class="dashboard">
-    <h2>Dashboard</h2>
+    <h2>Liste des Quiz</h2>
 
-  <!-- <p v-if="user">
-      Connecté en tant que :
-      <strong>{{ JSON.parse(email).email }}</strong>
-    </p>  -->
-    <button @click="logout">Déconnexion</button>
+    <p v-if="quizStore.loading">Chargement...</p>
+
+    <div v-for="quiz in quizStore.quizzes" :key="quiz._id" class="quiz-card">
+      <h3>{{ quiz.title }}</h3>
+      <p>{{ quiz.description }}</p>
+      <p>Durée : {{ quiz.duration }} secondes</p>
+
+      <button>Démarrer</button>
+    </div>
   </div>
 </template>
 
 <style scoped>
-
 .dashboard {
-  max-width: 400px;
-  margin: 80px auto;
+  max-width: 600px;
+  margin: 40px auto;
 }
-button {
-  padding: 10px;
-  background: black;
-  color: white;
-  border: none;
+
+.quiz-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 </style>
