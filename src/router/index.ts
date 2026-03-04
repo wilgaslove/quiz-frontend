@@ -7,21 +7,18 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/login"
+      redirect: "/dashboard"
     },
     {
       path: "/login",
       component: Login
-      
     },
     {
-      path:"/",
+      path: "/dashboard",
       component: Dashboard,
-      meta: {requiresAuth: true}
+      meta: { requiresAuth: true }
     }
   ]
-
-  
 })
 
 router.beforeEach((to, from, next) => {
@@ -33,6 +30,5 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-
 
 export default router
