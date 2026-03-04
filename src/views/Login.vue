@@ -17,7 +17,7 @@ const handleLogin = async () => {
       password: password.value
     });
 
-    router.push("/"); // redirection après login
+    router.push("/dashboard"); // redirection après login
   } catch (err) {
     error.value = err.response?.data?.message || "Erreur connexion";
   }

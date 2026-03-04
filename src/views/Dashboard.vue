@@ -16,11 +16,10 @@ const logout = () => {
   <div class="dashboard">
     <h2>Dashboard</h2>
 
-    <p v-if="user">
+  <!-- <p v-if="user">
       Connecté en tant que :
-      <strong>{{ JSON.parse(user).email }}</strong>
-    </p>
-
+      <strong>{{ JSON.parse(email).email }}</strong>
+    </p>  -->
     <button @click="logout">Déconnexion</button>
   </div>
 </template>
