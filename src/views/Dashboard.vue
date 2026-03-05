@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
 import { useQuizStore } from "@/stores/quiz"
+import { useRouter } from "vue-router"
+
 
 const quizStore = useQuizStore()
+
+// 
+const router = useRouter()
+
+
 
 onMounted(() => {
   quizStore.fetchQuizzes()
