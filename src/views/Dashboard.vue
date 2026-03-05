@@ -6,9 +6,11 @@ import { useRouter } from "vue-router"
 
 const quizStore = useQuizStore()
 
-// 
+// Démarrer les quiz
 const router = useRouter()
-
+const startQuiz = (id: string) => {
+  router.push(`/quiz/${id}`)
+}
 
 
 onMounted(() => {
