@@ -29,7 +29,7 @@ onMounted(() => {
       <p>{{ quiz.description }}</p>
       <p>Durée : {{ quiz.duration }} secondes</p>
 
-      <button>Démarrer</button>
+      <button @click="startQuiz(quiz._id)">Démarrer</button>
     </div>
   </div>
 </template>
