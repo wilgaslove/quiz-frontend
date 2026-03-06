@@ -56,3 +56,35 @@ onUnmounted(() => {
   clearInterval(timer)
 })
 </script>
+
+<template>
+  <div v-if="quiz">
+
+    <h2>{{ quiz.title }}</h2>
+
+    <h2>{{ quiz.title }}</h2>
+
+    <p>Temps restant : {{ timeLeft }} s ⏱️</p>
+
+    <div v-for="(q, index) in quiz.questions" :key="index" style="margin-bottom:20px">
+      <h3>{{ q.question }}</h3>
+
+      <div v-for="(option, i) in q.options" :key="i">
+        <label>
+          <input type="radio" :name="'question' + index" :value="i" @change="selectAnswer(index, i)" />
+          {{ option }}
+        </label>
+      </div>
+
+    </div>
+
+    <button @click="submitQuiz">
+      Soumettre
+    </button>
+
+    <div v-if="score !== null">
+      <h2>Votre score : {{ score }}/{{ quiz.questions.length }}</h2>
+    </div>
+
+  </div>
+</template>
