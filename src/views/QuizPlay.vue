@@ -62,7 +62,6 @@ onUnmounted(() => {
 
     <h2>{{ quiz.title }}</h2>
 
-    <h2>{{ quiz.title }}</h2>
 
     <p>Temps restant : {{ timeLeft }} s ⏱️</p>
 
@@ -71,8 +70,7 @@ onUnmounted(() => {
 
       <div v-for="(option, i) in q.options" :key="i">
         <label>
-          <input type="radio" :name="'question' + index" :value="i" @change="selectAnswer(index, i)" />
-          {{ option }}
+          <input type="radio" :name="'question' + index" :value="i" @change="selectAnswer(Number(index), Number(i))" />
         </label>
       </div>
 
