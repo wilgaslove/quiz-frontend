@@ -70,7 +70,12 @@ onUnmounted(() => {
 
       <div v-for="(option, i) in q.options" :key="i">
         <label>
-          <input type="radio" :name="'question' + index" :value="i" @change="selectAnswer(Number(index), Number(i))" />
+          <input 
+          type="radio" 
+          :name="'question' + index" 
+          :value="i" 
+          @change="() => selectAnswer(Number(index), Number(i))" />
+          {{ option }}
         </label>
       </div>
 
