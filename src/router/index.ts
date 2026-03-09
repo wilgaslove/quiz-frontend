@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Login.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import QuizPlay from '@/views/QuizPlay.vue'
+import Result from '@/views/Result.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,13 @@ const router = createRouter({
       path: '/quiz/:id',
       component: QuizPlay,
       meta: { requiresAuth: true },
+    },
+
+    // afichge des résultats
+    {
+      path: '/result/:quizId',
+      name: 'Result',
+      component: Result,
     },
   ],
 })
