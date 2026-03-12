@@ -18,6 +18,9 @@ const loadQuiz = async () => {
   const res = await api.get(`/quiz/${route.params.id}`)
   quiz.value = res.data
 
+  // démarrer une session quiz
+  await api.post('/quiz/${route.params.id}/start')
+  
   // charger durée du quiz
   timeLeft.value = quiz.value.duration || 60
 
