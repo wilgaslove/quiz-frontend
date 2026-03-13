@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue"
 import { useRoute } from "vue-router"
@@ -20,7 +19,7 @@ const loadQuiz = async () => {
 
   // démarrer une session quiz
   await api.post('/quiz/${route.params.id}/start')
-  
+
   // charger durée du quiz
   timeLeft.value = quiz.value.duration || 60
 
@@ -45,15 +44,23 @@ const selectAnswer = (questionIndex: number, optionIndex: number) => {
 
 // Soumission du quiz
 const submitQuiz = async () => {
+
   clearInterval(timer)
 
-  const res = await api.post(`/quiz/${route.params.id}/submit`, {
-    answers: answers.value
-  })
+  try {
 
-  score.value = res.data.score
+    const res = await api.post(`/quiz/${route.params.id}/submit`, {
+      answers: answers.value
+    })
+
+    score.value = res.data.score
+
+  } catch (err: any) {
+
+    alert(err.response?.data?.message || "Erreur")
+
+  }
 }
-
 onMounted(loadQuiz)
 
 onUnmounted(() => {
@@ -74,11 +81,8 @@ onUnmounted(() => {
 
       <div v-for="(option, i) in q.options" :key="i">
         <label>
-          <input 
-          type="radio" 
-          :name="'question' + index" 
-          :value="i" 
-          @change="() => selectAnswer(Number(index), Number(i))" />
+          <input type="radio" :name="'question' + index" :value="i"
+            @change="() => selectAnswer(Number(index), Number(i))" />
           {{ option }}
         </label>
       </div>
