@@ -26,31 +26,13 @@ let timer: any = null
 //   startTimer()
 // }
 
-// const loadQuiz = async () => {
-//   try {
-
-//     const res = await api.get(`/quiz/${route.params.id}`)
-//     quiz.value = res.data
-
-//     await api.post(`/quiz/${route.params.id}/start`)
-
-//     timeLeft.value = quiz.value.duration || 60
-
-//     startTimer()
-
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
-
-
 const loadQuiz = async () => {
   try {
 
     const res = await api.get(`/quiz/${route.params.id}`)
     quiz.value = res.data
 
-    // démarrer session quiz
+    // démarrer la session quiz
     await api.post(`/results/quiz/${route.params.id}/start`)
 
     timeLeft.value = quiz.value.duration || 60
@@ -61,7 +43,6 @@ const loadQuiz = async () => {
     console.error(err)
   }
 }
-
 // Timer
 const startTimer = () => {
   timer = setInterval(() => {
@@ -79,25 +60,6 @@ const selectAnswer = (questionIndex: number, optionIndex: number) => {
 }
 
 // Soumission du quiz
-// const submitQuiz = async () => {
-
-//   clearInterval(timer)
-
-//   try {
-
-//     const res = await api.post(`/quiz/${route.params.id}/submit`, {
-//       answers: answers.value
-//     })
-
-//     score.value = res.data.score
-
-//   } catch (err: any) {
-
-//     alert(err.response?.data?.message || "Erreur")
-
-//   }
-// }
-
 const submitQuiz = async () => {
 
   clearInterval(timer)
