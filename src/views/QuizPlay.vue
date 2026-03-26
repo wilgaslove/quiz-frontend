@@ -32,7 +32,8 @@ const loadQuiz = async () => {
     const res = await api.get(`/quiz/${route.params.id}`)
     quiz.value = res.data
 
-    await api.post(`/quiz/${route.params.id}/start`)
+    // démarrer la session quiz
+    await api.post(`/results/quiz/${route.params.id}/start`)
 
     timeLeft.value = quiz.value.duration || 60
 
@@ -42,7 +43,6 @@ const loadQuiz = async () => {
     console.error(err)
   }
 }
-
 // Timer
 const startTimer = () => {
   timer = setInterval(() => {
@@ -66,13 +66,13 @@ const submitQuiz = async () => {
 
   try {
 
-    const res = await api.post(`/quiz/${route.params.id}/submit`, {
+    const res = await api.post(`/results/quiz/${route.params.id}/submit`, {
       answers: answers.value
     })
 
     score.value = res.data.score
 
-  } catch (err: any) {
+  } catch (err:any) {
 
     alert(err.response?.data?.message || "Erreur")
 
