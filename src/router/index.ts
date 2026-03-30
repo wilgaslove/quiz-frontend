@@ -26,6 +26,19 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
 
+    {
+  path: "/admin",
+  component: () => import("@/views/AdminQuiz.vue")
+},
+{
+  path: "/admin/create",
+  component: () => import("@/views/CreateQuiz.vue")
+},
+{
+  path: "/admin/edit/:id",
+  component: () => import("@/views/EditQuiz.vue")
+}
+
     // afichge des résultats
     {
       path: '/result/:quizId',
