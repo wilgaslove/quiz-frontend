@@ -40,11 +40,11 @@ const router = createRouter({
 }
 
     // afichge des résultats
-    {
-      path: '/result/:quizId',
-      name: 'Result',
-      component: Result,
-    },
+    // {
+    //   path: '/result/:quizId',
+    //   name: 'Result',
+    //   component: Result,
+    // },
   ],
 })
 
