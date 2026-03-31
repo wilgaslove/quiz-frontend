@@ -14,7 +14,7 @@ const createQuiz = async () => {
     title: title.value,
     description: description.value,
     duration: duration.value,
-    questions: []
+    questions: questions.value
   })
 
   router.push("/admin")
@@ -41,6 +41,8 @@ const addOption = (qIndex: number) => {
 }
 
 
+
+
 </script>
 
 <template>
@@ -53,4 +55,21 @@ const addOption = (qIndex: number) => {
 
     <button @click="createQuiz">Créer</button>
   </div>
+
+  <div v-for="(q, qIndex) in questions" :key="qIndex">
+
+    <input v-model="q.question" placeholder="Question" />
+
+    <div v-for="(opt, oIndex) in q.options" :key="oIndex">
+      <input v-model="q.options[oIndex]" placeholder="Option" />
+
+      <input type="radio" :name="'correct' + qIndex" :value="oIndex" v-model="q.correctAnswer" />
+      Bonne réponse
+    </div>
+
+    <button @click="addOption(qIndex)">+ Option</button>
+
+  </div>
+
+  <button @click="addQuestion">+ Question</button>
 </template>
