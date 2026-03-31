@@ -13,9 +13,28 @@ const loadQuiz = async () => {
   quiz.value = res.data
 }
 
+// const updateQuiz = async () => {
+//   await api.put(`/quiz/${route.params.id}`, quiz.value)
+//   router.push("/admin")
+// }
+
 const updateQuiz = async () => {
-  await api.put(`/quiz/${route.params.id}`, quiz.value)
-  router.push("/admin")
+  try {
+
+    await api.put(`/quiz/${route.params.id}`, {
+      title: quiz.value.title,
+      description: quiz.value.description,
+      duration: quiz.value.duration,
+      questions: quiz.value.questions
+    })
+
+    alert("Quiz modifié ✅")
+
+    router.push("/admin")
+
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 const addQuestion = () => {
