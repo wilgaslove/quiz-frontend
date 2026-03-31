@@ -18,6 +18,19 @@ const updateQuiz = async () => {
   router.push("/admin")
 }
 
+const addQuestion = () => {
+  quiz.value.questions.push({
+    question: "",
+    options: ["", ""],
+    correctAnswer: 0
+  })
+}
+
+const addOption = (qIndex: number) => {
+  quiz.value.questions[qIndex].options.push("")
+}
+
+
 onMounted(loadQuiz)
 </script>
 
@@ -32,4 +45,3 @@ onMounted(loadQuiz)
     <button @click="updateQuiz">Mettre à jour</button>
   </div>
 </template>
-
