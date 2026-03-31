@@ -19,6 +19,28 @@ const createQuiz = async () => {
 
   router.push("/admin")
 }
+
+const questions = ref([
+  {
+    question: "",
+    options: ["", ""],
+    correctAnswer: 0
+  }
+])
+
+const addQuestion = () => {
+  questions.value.push({
+    question: "",
+    options: ["", ""],
+    correctAnswer: 0
+  })
+}
+
+const addOption = (qIndex: number) => {
+  questions.value[qIndex].options.push("")
+}
+
+
 </script>
 
 <template>
