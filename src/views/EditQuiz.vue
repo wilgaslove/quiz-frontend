@@ -64,43 +64,41 @@ onMounted(loadQuiz)
     <button @click="updateQuiz">Mettre à jour</button>
   </div> -->
 
-<div v-if="quiz">
+  <div v-if="quiz">
 
-  <h1>Modifier Quiz</h1>
+    <h1>Modifier Quiz</h1>
 
-  <input v-model="quiz.title" placeholder="Titre" />
-  <input v-model="quiz.description" placeholder="Description" />
-  <input v-model="quiz.duration" type="number" placeholder="Durée" />
+    <input v-model="quiz.title" placeholder="Titre" />
+    <input v-model="quiz.description" placeholder="Description" />
+    <input v-model="quiz.duration" type="number" placeholder="Durée" />
 
-  <div v-for="(q, qIndex) in quiz.questions" :key="qIndex">
+    <div v-for="(q, qIndex) in quiz.questions" :key="qIndex">
 
-    <h3>Question {{ qIndex + 1 }}</h3>
+      <!-- <h3>Question {{ qIndex + 1 }}</h3> -->
 
-    <input v-model="q.question" placeholder="Question" />
+      <h3>Question {{ Number(qIndex) + 1 }}</h3>
 
-    <div v-for="(opt, oIndex) in q.options" :key="oIndex">
+      <input v-model="q.question" placeholder="Question" />
 
-      <input v-model="q.options[oIndex]" placeholder="Option" />
+      <div v-for="(opt, oIndex) in q.options" :key="oIndex">
 
-      <input 
-        type="radio"
-        :name="'correct' + qIndex"
-        :value="oIndex"
-        v-model="q.correctAnswer"
-      />
-      Bonne réponse
+        <input v-model="q.options[oIndex]" placeholder="Option" />
+
+        <input type="radio" :name="'correct' + qIndex" :value="oIndex" v-model="q.correctAnswer" />
+        Bonne réponse
+
+      </div>
+
+      <button @click="addOption(Number(qIndex))">+ Option</button>
+        
 
     </div>
 
-    <button @click="addOption(qIndex)">+ Option</button>
+    <button @click="addQuestion">+ Question</button>
+
+    <br /><br />
+
+    <button @click="updateQuiz">Mettre à jour</button>
 
   </div>
-
-  <button @click="addQuestion">+ Question</button>
-
-  <br /><br />
-
-  <button @click="updateQuiz">Mettre à jour</button>
-
-</div>
 </template>

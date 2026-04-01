@@ -36,8 +36,14 @@ const addQuestion = () => {
   })
 }
 
+ //const addOption = (qIndex: number) => {
+ // questions.value[qIndex].options.push("")
+//}
+
 const addOption = (qIndex: number) => {
-  questions.value[qIndex].options.push("")
+  if (questions.value[qIndex]) {
+    questions.value[qIndex].options.push("")
+  }
 }
 
 
