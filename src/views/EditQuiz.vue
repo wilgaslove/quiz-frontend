@@ -49,6 +49,33 @@ const addOption = (qIndex: number) => {
   quiz.value.questions[qIndex].options.push("")
 }
 
+// Supprimer une question
+const removeQuestion = (qIndex: number) => {
+  if (quiz.value.questions.length <= 1) {
+    alert("Au moins une question requise")
+    return
+  }
+
+  quiz.value.questions.splice(qIndex, 1)
+}
+
+// Supprimer une option
+const removeOption = (qIndex: number, oIndex: number) => {
+  const options = quiz.value.questions[qIndex].options
+
+  if (options.length <= 2) {
+    alert("Au moins 2 options requises")
+    return
+  }
+
+  options.splice(oIndex, 1)
+
+  // Corriger la bonne réponse si nécessaire
+  if (quiz.value.questions[qIndex].correctAnswer === oIndex) {
+    quiz.value.questions[qIndex].correctAnswer = 0
+  }
+}
+
 
 onMounted(loadQuiz)
 </script>
@@ -77,20 +104,36 @@ onMounted(loadQuiz)
       <!-- <h3>Question {{ qIndex + 1 }}</h3> -->
 
       <h3>Question {{ Number(qIndex) + 1 }}</h3>
+      <button @click="removeQuestion(Number(qIndex))">
+        ❌Supprimer question
+      </button>
+
 
       <input v-model="q.question" placeholder="Question" />
 
-      <div v-for="(opt, oIndex) in q.options" :key="oIndex">
+      <!-- <div v-for="(opt, oIndex) in q.options" :key="oIndex">
 
         <input v-model="q.options[oIndex]" placeholder="Option" />
 
         <input type="radio" :name="'correct' + qIndex" :value="oIndex" v-model="q.correctAnswer" />
         Bonne réponse
 
+      </div> -->
+
+      <div v-for="(opt, oIndex) in q.options" :key="oIndex">
+
+        <input v-model="q.options[oIndex]" placeholder="Option" />
+
+        <input type="radio" :name="'correct' + qIndex" :value="oIndex" v-model="q.correctAnswer" />
+
+        <button @click="removeOption(Number(qIndex), Number(oIndex))">
+          ❌
+        </button>
+
       </div>
 
       <button @click="addOption(Number(qIndex))">+ Option</button>
-        
+
 
     </div>
 
