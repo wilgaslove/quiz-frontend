@@ -111,14 +111,6 @@ onMounted(loadQuiz)
 
       <input v-model="q.question" placeholder="Question" />
 
-      <!-- <div v-for="(opt, oIndex) in q.options" :key="oIndex">
-
-        <input v-model="q.options[oIndex]" placeholder="Option" />
-
-        <input type="radio" :name="'correct' + qIndex" :value="oIndex" v-model="q.correctAnswer" />
-        Bonne réponse
-
-      </div> -->
 
       <div v-for="(opt, oIndex) in q.options" :key="oIndex">
 
