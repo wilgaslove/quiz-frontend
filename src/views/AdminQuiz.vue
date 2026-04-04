@@ -3,7 +3,8 @@ import { onMounted, ref } from "vue"
 import { useRouter } from "vue-router"
 import api from "@/services/api"
 
-const quizzes = ref([])
+// const quizzes = ref([])
+const quizzes = ref<{ _id: string; title: string }[]>([])
 const router = useRouter()
 
 const loadQuizzes = async () => {

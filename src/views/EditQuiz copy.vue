@@ -81,15 +81,7 @@ onMounted(loadQuiz)
 </script>
 
 <template>
-  <!-- <div v-if="quiz">
-    <h1>Modifier Quiz</h1>
 
-    <input v-model="quiz.title" />
-    <input v-model="quiz.description" />
-    <input v-model="quiz.duration" type="number" />
-
-    <button @click="updateQuiz">Mettre à jour</button>
-  </div> -->
 
   <div v-if="quiz">
 
