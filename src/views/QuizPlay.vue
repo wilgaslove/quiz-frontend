@@ -43,6 +43,7 @@ const loadQuiz = async () => {
     console.error(err)
   }
 }
+
 // Timer
 const startTimer = () => {
   timer = setInterval(() => {
