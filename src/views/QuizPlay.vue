@@ -12,19 +12,7 @@ const score = ref<number | null>(null)
 const timeLeft = ref(0)
 let timer: any = null
 
-// Charger le quiz
-// const loadQuiz = async () => {
-//   const res = await api.get(`/quiz/${route.params.id}`)
-//   quiz.value = res.data
 
-//   // démarrer une session quiz
-//   await api.post(`/quiz/${route.params.id}/start`)
-
-//   // charger durée du quiz
-//   timeLeft.value = quiz.value.duration || 60
-
-//   startTimer()
-// }
 
 const loadQuiz = async () => {
   try {
