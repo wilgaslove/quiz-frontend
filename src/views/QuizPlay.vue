@@ -55,7 +55,11 @@ const submitQuiz = async () => {
 
   try {
 
-    const res = await api.post(`/results/quiz/${route.params.id}/submit`, {
+    // const res = await api.post(`/results/quiz/${route.params.id}/submit`, {
+    //   answers: answers.value
+    // })
+
+    const res = await api.post(`/quiz/${route.params.id}/submit`, {
       answers: answers.value
     })
 
@@ -87,7 +91,7 @@ onUnmounted(() => {
 
       <div v-for="(option, i) in q.options" :key="i">
         <label>
-          <input type="radio" :name="'question' + index" :value="i"
+          <input type="radio" :name="'question' + index" :value="iP"
             @change="() => selectAnswer(Number(index), Number(i))" />
           {{ option }}
         </label>
