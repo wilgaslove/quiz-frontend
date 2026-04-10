@@ -55,9 +55,6 @@ const submitQuiz = async () => {
 
   try {
 
-    // const res = await api.post(`/results/quiz/${route.params.id}/submit`, {
-    //   answers: answers.value
-    // })
 
     const res = await api.post(`/quiz/${route.params.id}/submit`, {
       answers: answers.value
