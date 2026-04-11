@@ -150,7 +150,7 @@ onUnmounted(() => {
     <h2>{{ quiz.title }}</h2>
 
 
-    <p>Temps restant : {{ timeLeft }} s ⏱️</p>
+    <p>Temps restant en seconde: {{ timeLeft }} s ⏱️</p>
 
     <div v-for="(q, index) in quiz.questions" :key="index" style="margin-bottom:20px">
       <h3>{{ q.question }}</h3>
