@@ -48,6 +48,7 @@ const loadQuiz = async () => {
 //     }
 //   }, 1000)
 // }
+
 const startTimer = (endTime: number) => {
   timer = setInterval(() => {
     const now = Date.now()

@@ -1,18 +1,3 @@
-F<template>
-
-    <div>
-
-        <h1>Résultat du Quiz</h1>
-
-        <div v-if="result">
-            <p>Score : {{ result.score }} / {{ result.total }}</p>
-            <p>{{ result.message }}</p>
-        </div>
-
-    </div>
-
-</template>
-
 <script>
 
 export default {
@@ -40,3 +25,18 @@ export default {
 }
 
 </script>
+
+<template>
+
+    <div>
+
+        <h1>Résultat du Quiz</h1>
+
+        <div v-if="result">
+            <p>Score : {{ result.score }} / {{ result.total }}</p>
+            <p>{{ result.message }}</p>
+        </div>
+
+    </div>
+
+</template>
