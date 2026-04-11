@@ -14,32 +14,51 @@ let timer: any = null
 
 
 
+// const loadQuiz = async () => {
+//   try {
+
+//     const res = await api.get(`/quiz/${route.params.id}`)
+//     quiz.value = res.data
+
+//     // démarrer la session quiz
+//     await api.post(`/results/quiz/${route.params.id}/start`)
+
+//     // timeLeft.value = quiz.value.duration || 60
+//     // const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
+//     const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
+//     quiz.value = res.data
+
+//     // 🔥 récupérer réponses sauvegardées
+//     answers.value = startRes.data.answers || []
+
+//     const endTime = new Date(startRes.data.endTime).getTime()
+
+//     startTimer(endTime)
+
+
+
+
+
+//     // startTimer()
+
+//   } catch (err) {
+//     console.error(err)
+//   }
+// }
+
 const loadQuiz = async () => {
   try {
-
     const res = await api.get(`/quiz/${route.params.id}`)
     quiz.value = res.data
 
-    // démarrer la session quiz
-    await api.post(`/results/quiz/${route.params.id}/start`)
-
-    // timeLeft.value = quiz.value.duration || 60
-    // const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
     const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
-    quiz.value = res.data
 
-    // 🔥 récupérer réponses sauvegardées
+    // récupérer réponses sauvegardées
     answers.value = startRes.data.answers || []
 
     const endTime = new Date(startRes.data.endTime).getTime()
 
     startTimer(endTime)
-
-
-
-
-
-    // startTimer()
 
   } catch (err) {
     console.error(err)
@@ -106,7 +125,7 @@ const submitQuiz = async () => {
   try {
 
 
-    const res = await api.post(`/quiz/${route.params.id}/submit`, {
+    const res = await api.post(`results/quiz/${route.params.id}/submit`, {
       answers: answers.value
     })
 
