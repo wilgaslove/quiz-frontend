@@ -24,11 +24,20 @@ const loadQuiz = async () => {
     await api.post(`/results/quiz/${route.params.id}/start`)
 
     // timeLeft.value = quiz.value.duration || 60
+    // const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
     const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
+    quiz.value = res.data
+    
+    // 🔥 récupérer réponses sauvegardées
+    answers.value = startRes.data.answers || []
 
     const endTime = new Date(startRes.data.endTime).getTime()
 
     startTimer(endTime)
+
+
+
+
 
     // startTimer()
 
@@ -64,9 +73,30 @@ const startTimer = (endTime: number) => {
   }, 1000)
 }
 
+// Auto-save des réponses
+let saveTimeout: any = null
+
+const autoSave = () => {
+  if (saveTimeout) clearTimeout(saveTimeout)
+
+  saveTimeout = setTimeout(async () => {
+    try {
+      await api.post(`/results/quiz/${route.params.id}/save`, {
+        answers: answers.value
+      })
+    } catch (err) {
+      console.error("Auto-save error", err)
+    }
+  }, 500) // attend 500ms après dernière action
+}
+
+// Sélection d'une réponse
 const selectAnswer = (questionIndex: number, optionIndex: number) => {
   answers.value[questionIndex] = optionIndex
+  autoSave()
 }
+
+
 
 // Soumission du quiz
 const submitQuiz = async () => {
