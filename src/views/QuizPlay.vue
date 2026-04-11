@@ -27,7 +27,7 @@ const loadQuiz = async () => {
     // const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
     const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
     quiz.value = res.data
-    
+
     // 🔥 récupérer réponses sauvegardées
     answers.value = startRes.data.answers || []
 
@@ -138,7 +138,12 @@ onUnmounted(() => {
 
       <div v-for="(option, i) in q.options" :key="i">
         <label>
-          <input type="radio" :name="'question' + index" :value="i"
+          <!-- <input type="radio" :name="'question' + index" :value="i" -->
+          <input 
+          type="radio" 
+          :name="'question' + index" 
+          :value="i" 
+          :checked="answers[Number(index)] === i"
             @change="() => selectAnswer(Number(index), Number(i))" />
           {{ option }}
         </label>
