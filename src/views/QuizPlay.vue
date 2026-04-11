@@ -23,9 +23,14 @@ const loadQuiz = async () => {
     // démarrer la session quiz
     await api.post(`/results/quiz/${route.params.id}/start`)
 
-    timeLeft.value = quiz.value.duration || 60
+    // timeLeft.value = quiz.value.duration || 60
+    const startRes = await api.post(`/results/quiz/${route.params.id}/start`)
 
-    startTimer()
+    const endTime = new Date(startRes.data.endTime).getTime()
+
+    startTimer(endTime)
+
+    // startTimer()
 
   } catch (err) {
     console.error(err)
@@ -33,7 +38,7 @@ const loadQuiz = async () => {
 }
 
 // Timer
-const startTimer = () => {
+const startTimer = (endTime: number) => {
   timer = setInterval(() => {
     if (timeLeft.value > 0) {
       timeLeft.value--
@@ -62,7 +67,7 @@ const submitQuiz = async () => {
 
     score.value = res.data.score
 
-  } catch (err:any) {
+  } catch (err: any) {
 
     alert(err.response?.data?.message || "Erreur")
 
