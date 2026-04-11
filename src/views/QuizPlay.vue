@@ -38,11 +38,25 @@ const loadQuiz = async () => {
 }
 
 // Timer
+// const startTimer = (endTime: number) => {
+//   timer = setInterval(() => {
+//     if (timeLeft.value > 0) {
+//       timeLeft.value--
+//     } else {
+//       clearInterval(timer)
+//       submitQuiz()
+//     }
+//   }, 1000)
+// }
 const startTimer = (endTime: number) => {
   timer = setInterval(() => {
-    if (timeLeft.value > 0) {
-      timeLeft.value--
+    const now = Date.now()
+    const remaining = Math.floor((endTime - now) / 1000)
+
+    if (remaining > 0) {
+      timeLeft.value = remaining
     } else {
+      timeLeft.value = 0
       clearInterval(timer)
       submitQuiz()
     }
