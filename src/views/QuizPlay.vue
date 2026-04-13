@@ -123,8 +123,6 @@ const submitQuiz = async () => {
   clearInterval(timer)
 
   try {
-
-
     const res = await api.post(`/results/quiz/${route.params.id}/submit`, {
       answers: answers.value
     })
