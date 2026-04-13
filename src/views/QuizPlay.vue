@@ -118,7 +118,30 @@ const selectAnswer = (questionIndex: number, optionIndex: number) => {
 
 
 // Soumission du quiz
+// const submitQuiz = async () => {
+
+//   clearInterval(timer)
+
+//   try {
+//     const res = await api.post(`/results/quiz/${route.params.id}/submit`, {
+//       answers: answers.value
+//     })
+
+//     score.value = res.data.score
+
+//   } catch (err: any) {
+
+//     alert(err.response?.data?.message || "Erreur")
+
+//   }
+// }
+
+
+const isSubmitting = ref(false);
+
 const submitQuiz = async () => {
+  if (isSubmitting.value) return
+  isSubmitting.value = true
 
   clearInterval(timer)
 
@@ -130,11 +153,11 @@ const submitQuiz = async () => {
     score.value = res.data.score
 
   } catch (err: any) {
-
     alert(err.response?.data?.message || "Erreur")
-
   }
 }
+
+
 onMounted(loadQuiz)
 
 onUnmounted(() => {
