@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import api from "@/services/api"
 
-//dj
+
 interface Quiz {
   _id: string
   title: string
