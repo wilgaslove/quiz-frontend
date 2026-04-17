@@ -3,6 +3,8 @@ import { onMounted, ref } from "vue"
 import { useRouter } from "vue-router"
 import api from "@/services/api"
 
+import navbar from "@/components/navbar.vue"
+
 // const quizzes = ref([])
 const quizzes = ref<{ _id: string; title: string }[]>([])
 const router = useRouter()
@@ -31,6 +33,7 @@ onMounted(loadQuizzes)
 </script>
 
 <template>
+  <navbar />
   <div>
     <h1>Admin Quiz</h1>
 

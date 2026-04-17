@@ -1,8 +1,10 @@
 <script setup>
 import { onMounted, ref } from "vue"
 import api from "@/services/api"
+import navbar from "@/components/navbar.vue"
 
 const stats = ref(null)
+
 
 onMounted(async () => {
   const res = await api.get("/results/all")
@@ -11,6 +13,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <navbar />
   <div>
     <h1>Admin Dashboard</h1>
 
