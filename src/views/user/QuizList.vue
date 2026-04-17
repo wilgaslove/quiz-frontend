@@ -16,7 +16,7 @@ onMounted(async () => {
 
     <div v-for="quiz in quizzes" :key="quiz._id">
       <h3>{{ quiz.title }}</h3>
-      <router-link :to="`/quiz/${quiz._id}`">Commencer</router-link>
+      <button @click="$router.push(`/quiz/${quiz._id}`)">Commencer</button>
     </div>
   </div>
 </template>
