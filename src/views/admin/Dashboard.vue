@@ -7,8 +7,8 @@ const stats = ref(null)
 
 
 onMounted(async () => {
-  const res = await api.get("/results/all")
-  stats.value = res.data
+  // const res = await api.get("/results/all")
+  // stats.value = res.data
 })
 </script>
 
