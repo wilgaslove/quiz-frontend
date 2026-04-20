@@ -66,8 +66,22 @@ const router = createRouter({
  * 🔐 NAVIGATION GUARD GLOBAL
  */
 router.beforeEach((to, from, next) => {
+
+  // 🔑 AJOUT IMPORTANT
   const token = localStorage.getItem('token')
-  const user = JSON.parse(localStorage.getItem('user') || 'null')
+
+  let user = null
+
+  try {
+    const storedUser = localStorage.getItem('user')
+    user = storedUser && storedUser !== "undefined"
+      ? JSON.parse(storedUser)
+      : null
+  } catch (error) {
+    console.warn("User JSON invalide, reset localStorage")
+    localStorage.removeItem('user')
+    user = null
+  }
 
   // 🔒 accès protégé
   if (to.meta.requiresAuth && !token) {
