@@ -41,7 +41,7 @@ const router = createRouter({
     // 👨‍💼 ADMIN
     {
       path: '/admin',
-      component: AdminDashboard,
+      component: () => import('@/views/admin/Dashboard.vue'),
       meta: { requiresAuth: true, adminOnly: true },
     },
     {
@@ -65,44 +65,74 @@ const router = createRouter({
 /**
  * 🔐 NAVIGATION GUARD GLOBAL
  */
-router.beforeEach((to, from, next) => {
+// router.beforeEach((to, from, next) => {
 
-  // 🔑 AJOUT IMPORTANT
+//   // 🔑 AJOUT IMPORTANT
+//   const token = localStorage.getItem('token')
+
+//   let user = null
+
+//   try {
+//     const storedUser = localStorage.getItem('user')
+//     user = storedUser && storedUser !== "undefined"
+//       ? JSON.parse(storedUser)
+//       : null
+//   } catch (error) {
+//     console.warn("User JSON invalide, reset localStorage")
+//     localStorage.removeItem('user')
+//     user = null
+//   }
+
+//   // 🔒 accès protégé
+//   if (to.meta.requiresAuth && !token) {
+//     return next('/login')
+//   }   
+
+//   // 👨‍💼 admin uniquement
+//   if (to.meta.adminOnly && user?.role !== 'admin') {
+//     return next('/dashboard')
+//   }
+
+//   // 🚀 redirection automatique si déjà connecté
+//   if (to.path === '/login' && token) {
+//     if (user?.role === 'admin') {
+//       return next('/admin')
+//     } else {
+//       return next('/dashboard')
+//     }
+//   }
+
+//   next()
+// })
+
+router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
 
   let user = null
-
   try {
     const storedUser = localStorage.getItem('user')
     user = storedUser && storedUser !== "undefined"
       ? JSON.parse(storedUser)
       : null
-  } catch (error) {
-    console.warn("User JSON invalide, reset localStorage")
+  } catch {
     localStorage.removeItem('user')
-    user = null
   }
 
-  // 🔒 accès protégé
+  // 🔒 pas connecté → login
   if (to.meta.requiresAuth && !token) {
     return next('/login')
   }
 
-  // 👨‍💼 admin uniquement
+  // 👨‍💼 admin seulement
   if (to.meta.adminOnly && user?.role !== 'admin') {
     return next('/dashboard')
   }
 
-  // 🚀 redirection automatique si déjà connecté
-  if (to.path === '/login' && token) {
-    if (user?.role === 'admin') {
-      return next('/admin')
-    } else {
-      return next('/dashboard')
-    }
+  // 🚀 empêcher login UNIQUEMENT si on vient de /
+  if (to.path === '/login' && token && from.path === '/') {
+    return next(user?.role === 'admin' ? '/admin' : '/dashboard')
   }
 
   next()
 })
-
 export default router

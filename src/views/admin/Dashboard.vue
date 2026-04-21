@@ -1,26 +1,89 @@
-<script setup>
-import { onMounted, ref } from "vue"
+<script setup lang="ts">
+import { ref, onMounted } from "vue"
 import api from "@/services/api"
-import navbar from "@/components/navbar.vue"
 
-const stats = ref(null)
+const stats = ref<any>(null)
+const leaderboard = ref<any[]>([])
 
+const loadStats = async () => {
+  try {
+    const res = await api.get("/results/admin/stats")
+    stats.value = res.data
 
-onMounted(async () => {
-  // const res = await api.get("/results/all")
-  // stats.value = res.data
-})
+    const lb = await api.get("/results/leaderboard/global")
+    leaderboard.value = lb.data
+
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+onMounted(loadStats)
 </script>
 
 <template>
-  <navbar />
-  <div>
-    <h1>Admin Dashboard</h1>
+  <div class="p-6">
+    <h1>📊 Dashboard Admin</h1>
 
-    <button @click="$router.push('/admin/create')">Créer un quiz</button>
+    <!-- STATS -->
+    <div v-if="stats" class="grid">
+      <div class="card">
+        <h3>Quiz</h3>
+        <p>{{ stats.totalQuizzes }}</p>
+      </div>
 
-    <div v-if="stats">
-      <p>Total résultats: {{ stats.length }}</p>
+      <div class="card">
+        <h3>Utilisateurs</h3>
+        <p>{{ stats.totalUsers }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Participations</h3>
+        <p>{{ stats.totalResults }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Score moyen</h3>
+        <p>{{ stats.avgScore.toFixed(2) }}</p>
+      </div>
     </div>
+
+    <!-- LEADERBOARD -->
+    <h2 style="margin-top:30px">🏆 Top joueurs</h2>
+
+    <table border="1" cellpadding="10">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Score total</th>
+          <th>Quiz passés</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in leaderboard" :key="user.userId">
+          <td>{{ user.nom }}</td>
+          <td>{{ user.totalScore }}</td>
+          <td>{{ user.totalQuizzes }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
+
+
+
+<style scoped>
+.grid {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  width: 150px;
+  text-align: center;
+}
+</style>
