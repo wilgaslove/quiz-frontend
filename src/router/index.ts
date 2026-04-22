@@ -65,45 +65,6 @@ const router = createRouter({
 /**
  * 🔐 NAVIGATION GUARD GLOBAL
  */
-// router.beforeEach((to, from, next) => {
-
-//   // 🔑 AJOUT IMPORTANT
-//   const token = localStorage.getItem('token')
-
-//   let user = null
-
-//   try {
-//     const storedUser = localStorage.getItem('user')
-//     user = storedUser && storedUser !== "undefined"
-//       ? JSON.parse(storedUser)
-//       : null
-//   } catch (error) {
-//     console.warn("User JSON invalide, reset localStorage")
-//     localStorage.removeItem('user')
-//     user = null
-//   }
-
-//   // 🔒 accès protégé
-//   if (to.meta.requiresAuth && !token) {
-//     return next('/login')
-//   }   
-
-//   // 👨‍💼 admin uniquement
-//   if (to.meta.adminOnly && user?.role !== 'admin') {
-//     return next('/dashboard')
-//   }
-
-//   // 🚀 redirection automatique si déjà connecté
-//   if (to.path === '/login' && token) {
-//     if (user?.role === 'admin') {
-//       return next('/admin')
-//     } else {
-//       return next('/dashboard')
-//     }
-//   }
-
-//   next()
-// })
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
@@ -118,21 +79,22 @@ router.beforeEach((to, from, next) => {
     localStorage.removeItem('user')
   }
 
-  // 🔒 pas connecté → login
+  // 🔒 accès protégé
   if (to.meta.requiresAuth && !token) {
     return next('/login')
   }
 
-  // 👨‍💼 admin seulement
+  // 👨‍💼 admin uniquement
   if (to.meta.adminOnly && user?.role !== 'admin') {
     return next('/dashboard')
   }
 
-  // 🚀 empêcher login UNIQUEMENT si on vient de /
-  if (to.path === '/login' && token && from.path === '/') {
+  // 🚀 empêcher accès login si connecté
+  if (to.path === '/login' && token) {
     return next(user?.role === 'admin' ? '/admin' : '/dashboard')
   }
 
   next()
 })
+
 export default router
