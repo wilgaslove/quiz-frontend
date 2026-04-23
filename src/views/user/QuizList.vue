@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue"
 import api from "@/services/api"
+// import navbar form "@/components"
 
 const quizzes = ref([])
 

@@ -3,7 +3,7 @@
 import { onMounted } from "vue"
 import { useQuizStore } from "@/stores/quiz"
 import { useRouter } from "vue-router"
-import {  } from "module";
+import navbar from "@/components/navbar.vue"
 
 
 const quizStore = useQuizStore()
