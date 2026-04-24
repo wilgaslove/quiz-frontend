@@ -91,5 +91,4 @@ router.beforeEach((to, from, next) => {
   // ✅ 3. Tout le reste passe
   next()
 })
-
 export default router

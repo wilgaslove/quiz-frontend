@@ -2,6 +2,7 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import api from "@/services/api"
+import { log } from "console"
 
 const router = useRouter()
 
@@ -32,7 +33,10 @@ const login = async () => {
  
   } catch (err: any) {
     error.value = err.response?.data?.message || "Erreur login"
+
   }
+  // console.log(error.value);
+  
 }
 </script>
 
