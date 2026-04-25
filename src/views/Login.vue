@@ -2,10 +2,8 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import api from "@/services/api"
-import { log } from "console"
 
 const router = useRouter()
-
 const email = ref("")
 const password = ref("")
 const error = ref("")
