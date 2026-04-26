@@ -33,7 +33,6 @@ const login = async () => {
     error.value = err.response?.data?.message || "Erreur login"
 
   }
-  // console.log(error.value);
   
 }
 </script>
