@@ -38,16 +38,19 @@ export const useAuthStore = defineStore('auth', {
     async login(data: LoginData) {
       const res = await api.post('/auth/login', data)
 
+      // ✔️ adapter à ton backend actuel
       this.token = res.data.token
-      this.user = res.data.user
+      this.user = {
+        id: res.data.id,
+        nom: res.data.nom,
+        email: res.data.email,
+        role: res.data.role,
+      }
 
       if (this.token) {
         localStorage.setItem('token', this.token)
       }
-
-      if (this.user) {
-        localStorage.setItem('user', JSON.stringify(this.user))
-      }
+      localStorage.setItem('user', JSON.stringify(this.user))
     },
 
     init() {

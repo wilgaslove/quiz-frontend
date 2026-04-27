@@ -15,30 +15,31 @@ const login = async () => {
       password: password.value
     })
 
-    // 🔐 stocker
-    localStorage.setItem("token", res.data.token)
-    localStorage.setItem("user", JSON.stringify(res.data.user))
+    console.log("DATA 👉", res.data)
 
-    const role = res.data.user.role
-
-    // 🚀 redirection selon rôle
-    if (role === "admin") {
-      router.push("/admin")
-    } else {
-      router.push("/dashboard")
+    if (!res.data || !res.data.user) {
+      error.value = "Réponse API invalide"
+      return
     }
 
- 
-  } catch (err: any) {
-  console.log("FULL ERROR 👉", err)
-  console.log("RESPONSE 👉", err.response)
+    const user = res.data.user
 
-  error.value = err.response?.data?.message || "Erreur login"
-  // console.log("RES 👉", res)
-// console.log("DATA 👉", res.data)
-}
+    localStorage.setItem("token", res.data.token)
+    localStorage.setItem("user", JSON.stringify(user))
+
+    const role = user.role
+
+    router.push(role === "admin" ? "/admin" : "/dashboard")
+
+
+  } catch (err: any) {
+
+
+    error.value = err.response?.data?.message || "Erreur login"
+    
+  }
   // console.log(error.value);
-  
+
 }
 </script>
 
@@ -65,6 +66,7 @@ const login = async () => {
   margin: auto;
   margin-top: 100px;
 }
+
 .error {
   color: red;
 }
