@@ -10,6 +10,7 @@ interface User {
   id: string
   name: string
   email: string
+  role: string
 }
 
 export const useAuthStore = defineStore('auth', {
@@ -48,7 +49,7 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('user', JSON.stringify(this.user))
       }
     },
-    
+
     init() {
       const user = localStorage.getItem('user')
       if (user) {
