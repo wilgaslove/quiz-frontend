@@ -66,29 +66,45 @@ const router = createRouter({
  * 🔐 NAVIGATION GUARD GLOBAL
  */
 
+import { useAuthStore } from "@/stores/auth"
 
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('token')
+  const auth = useAuthStore()
 
-  let user = null
-  try {
-    const storedUser = localStorage.getItem('user')
-    user = storedUser ? JSON.parse(storedUser) : null
-  } catch {
-    localStorage.removeItem('user')
+  if (to.meta.requiresAuth && !auth.isAuthenticated) {
+    return next("/login")
   }
 
-  // 🔒 1. Route protégée → login si pas connecté
-  if (to.meta.requiresAuth && !token) {
-    return next('/login')
+  const authRole = (auth.user as { role?:   string })?.role
+  if (to.meta.adminOnly && authRole !== "admin") {
+    return next("/dashboard")
   }
 
-  // 👨‍💼 2. Route admin → bloquer si pas admin
-  if (to.meta.adminOnly && user?.role !== 'admin') {
-    return next('/dashboard')
-  }
-
-  // ✅ 3. Tout le reste passe
   next()
 })
+
+// router.beforeEach((to, from, next) => {
+//   const token = localStorage.getItem('token')
+
+//   let user = null
+//   try {
+//     const storedUser = localStorage.getItem('user')
+//     user = storedUser ? JSON.parse(storedUser) : null
+//   } catch {
+//     localStorage.removeItem('user')
+//   }
+
+//   // 🔒 1. Route protégée → login si pas connecté
+//   if (to.meta.requiresAuth && !token) {
+//     return next('/login')
+//   }
+
+//   // 👨‍💼 2. Route admin → bloquer si pas admin
+//   if (to.meta.adminOnly && user?.role !== 'admin') {
+//     return next('/dashboard')
+//   }
+
+//   // ✅ 3. Tout le reste passe
+//   next()
+// })
 export default router
