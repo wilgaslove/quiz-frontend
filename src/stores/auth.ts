@@ -8,7 +8,7 @@ interface LoginData {
 
 interface User {
   id: string
-  name: string
+  nom: string
   email: string
   role: string
 }
