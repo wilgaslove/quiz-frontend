@@ -34,8 +34,7 @@ const login = async () => {
   console.log("RESPONSE 👉", err.response)
 
   error.value = err.response?.data?.message || "Erreur login"
-  // console.log("RES 👉", res)
-console.log("DATA 👉", res.data)
+  
 }
   // console.log(error.value);
   
