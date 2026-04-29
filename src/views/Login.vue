@@ -17,10 +17,7 @@ const login = async () => {
 
     console.log("DATA 👉", res.data)
 
-    if (!res.data || !res.data.user) {
-      error.value = "Réponse API invalide"
-      return
-    }
+ 
 
     const user = res.data.user
 
