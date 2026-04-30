@@ -17,8 +17,6 @@ const login = async () => {
 
     console.log("DATA 👉", res.data)
 
- 
-
     const user = res.data.user
 
     localStorage.setItem("token", res.data.token)
