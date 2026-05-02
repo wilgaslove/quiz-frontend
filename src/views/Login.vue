@@ -13,18 +13,20 @@ const login = async () => {
     const res = await api.post("/auth/login", {
       email: email.value,
       password: password.value
-    })
-
+    })  
+    
+    
     console.log("DATA 👉", res.data)
-
+    
     const user = res.data.user
-
+    
     localStorage.setItem("token", res.data.token)
     localStorage.setItem("user", JSON.stringify(user))
-
+    
     const role = user.role
-
+    
     router.push(role === "admin" ? "/admin" : "/dashboard")
+   
 
 
   } catch (err: any) {
