@@ -26,6 +26,7 @@ onMounted(() => {
 
   <navbar />
   <div class="dashboard">
+    <h1>Dashboard apprenant</h1>
     <h2>Liste des Quiz</h2>
 
     <p v-if="quizStore.loading">Chargement...</p>

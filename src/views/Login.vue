@@ -1,39 +1,38 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import { useRouter } from "vue-router"
-import api from "@/services/api"
+import { useAuthStore } from "@/stores/auth"
 
 const router = useRouter()
+const auth = useAuthStore()
+
 const email = ref("")
 const password = ref("")
 const error = ref("")
 
 const login = async () => {
+
   try {
-    const res = await api.post("/auth/login", {
+
+    await auth.login({
       email: email.value,
       password: password.value
-    })  
-    
-    
-    console.log("DATA 👉", res.data)
-    
-    const user = res.data.user
-    
-    localStorage.setItem("token", res.data.token)
-    localStorage.setItem("user", JSON.stringify(user))
-    
-    const role = user.role
-    
-    router.push(role === "admin" ? "/admin" : "/dashboard")
-   
+    })
 
+    console.log(auth.user)
+
+    router.push(
+      auth.user?.role === "admin"
+        ? "/admin"
+        : "/dashboard"
+    )
 
   } catch (err: any) {
 
+    error.value =
+      err.response?.data?.message ||
+      "Erreur login"
 
-    error.value = err.response?.data?.message || "Erreur login"
-    
   }
 
 }
