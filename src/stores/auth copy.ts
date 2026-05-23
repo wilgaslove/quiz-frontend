@@ -14,9 +14,8 @@ interface User {
 }
 
 export const useAuthStore = defineStore('auth', {
-
   state: () => ({
-    user: JSON.parse(localStorage.getItem('user') || 'null') as User | null,
+    user: null as User | null,
     token: localStorage.getItem('token') as string | null,
   }),
 
@@ -27,23 +26,25 @@ export const useAuthStore = defineStore('auth', {
   actions: {
 
     async login(data: LoginData) {
-
       const res = await api.post('/auth/login', data)
 
-      // ✅ TOKEN
+      // ✔️ adapter à ton backend actuel
       this.token = res.data.token
+      this.user = {
+        id: res.data.id,
+        nom: res.data.nom,
+        email: res.data.email,
+        role: res.data.role,
+      }
 
-      // ✅ USER
-      this.user = res.data.user
-
-      // ✅ STORAGE
-      localStorage.setItem('token', this.token)
+      if (this.token) {
+        localStorage.setItem('token', this.token)
+      }
       localStorage.setItem('user', JSON.stringify(this.user))
     },
 
     init() {
       const user = localStorage.getItem('user')
-
       if (user) {
         this.user = JSON.parse(user)
       }
@@ -52,7 +53,6 @@ export const useAuthStore = defineStore('auth', {
     logout() {
       this.user = null
       this.token = null
-
       localStorage.removeItem('token')
       localStorage.removeItem('user')
     },
