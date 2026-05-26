@@ -5,10 +5,10 @@
     <nav>
         <!-- <h1>Quiz App</h1> -->
 
-        <div class="bg-red-500" style="gap: 20px">
-            <router-link to="/" class="btn btn-primary text-red-500">Accueil</router-link>
-            <router-link to="/admin/create" class="btn btn-secondary">Créer un quiz</router-link>
-            <router-link to="/admin" class="btn btn-danger">Admin</router-link>
+        <div  class="flex gap-4 p-4 bg-gray-800 text-white ">
+            <router-link to="/" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-4 py-2">Accueil</router-link>
+            <router-link to="/admin/create" class="transition ease-in-out delay-150 bg-green-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-300 px-4 py-2">Créer un Quiz</router-link>
+            <router-link to="/admin" class="transition ease-in-out delay-150 bg-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-600 duration-300 px-4 py-2">Admin</router-link>
         </div>
     </nav>
 </template>
