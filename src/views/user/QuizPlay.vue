@@ -166,10 +166,20 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <div class="mx-auto max-w-2xl my-10">
+    <div class="flex justify-between max-w-2xl  mx-10 ">
+      <h2 class="text-xl font-bold mb-2">{{ quiz.title }}</h2>
+      <p class=" text-lg font-semibold">Temps restant: {{ timeLeft }} s ⏱️</p>
+    </div>
+  </div>
   <div class="flex justify-center items-center  my-10">
-    <div v-if="quiz" class="p-4 border-double border-4 border-gray-300 rounded-lg shadow-md">
-      <h2>{{ quiz.title }}</h2>
-      <p>Temps restant en seconde: {{ timeLeft }} s ⏱️</p>
+    <div v-if="quiz" class="p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full max-w-2xl">
+
+      <div v-if="score !== null" class="mb-4 p-3 bg-green-100 border border-green-400  text-xl text-green-700 rounded w-[12rem]">
+        <h2>Votre Note : {{ score }}/{{ quiz.questions.length }}</h2>
+      </div>
+
+      
       <div v-for="(q, index) in quiz.questions" :key="index" style="margin-bottom:20px">
         <h3>{{ q.question }}</h3>
         <div v-for="(option, i) in q.options" :key="i">
@@ -185,18 +195,18 @@ onUnmounted(() => {
           </label>
         </div>
       </div>
-      <button @click="submitQuiz" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
-        Soumettre
-      </button> 
-      
-       <button @click="$router.back()" class="transition ease-in-out delay-150 bg-gray-500 hover:-translate-y-1 hover:scale-110 hover:bg-gray-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
-      Retour
-    </button>
+      <div class="flex justify-around">
+        <button @click="submitQuiz" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
+          Soumettre
+        </button>
+        
+         <button @click="$router.back()" class="transition ease-in-out delay-150 bg-gray-500 hover:-translate-y-1 hover:scale-110 hover:bg-gray-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
+        Retour
+            </button>
+      </div>
       
 
-      <div v-if="score !== null">
-        <h2>Votre score : {{ score }}/{{ quiz.questions.length }}</h2>
-      </div>
+      
     </div>
   </div>
   <div class="flex justify-center items-center  my-10">
