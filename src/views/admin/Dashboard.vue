@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
 import api from "@/services/api"
+import navbar from "@/components/navbar.vue"
 
 const stats = ref<any>(null)
 const leaderboard = ref<any[]>([])
@@ -22,8 +23,8 @@ onMounted(loadStats)
 </script>
 
 <template>
+  <navbar />
   <div class="p-6">
-    <h1>📊 Dashboard Admin</h1>
 
     <!-- STATS -->
     <div v-if="stats" class="grid">
