@@ -3,6 +3,7 @@
 import { onMounted } from "vue"
 import { useQuizStore } from "@/stores/quiz"
 import { useRouter } from "vue-router"
+import navbar from "@/components/navbar.vue"
 
 
 const quizStore = useQuizStore()
@@ -22,6 +23,10 @@ onMounted(() => {
 
 
 <template>
+
+  <div class="" >
+    <navbar />
+  </div>
 
   <div class="dashboard">
     <h1 class="text-2xl font-bold mb-4">Liste des Quiz</h1>
