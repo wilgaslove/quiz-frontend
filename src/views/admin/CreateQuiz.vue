@@ -62,12 +62,12 @@ const addOption = (qIndex: number) => {
       <input v-model="title" placeholder="Titre" class="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
       <input v-model="description" placeholder="Description" class="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
       <input v-model="duration" type="number" placeholder="Durée" class="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      <button @click="createQuiz" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Créer</button>
+      <button @click="createQuiz" class="w-[8rem] bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Créer</button>
     </div>
     <div v-for="(q, qIndex) in questions" :key="qIndex" class="mt-6 p-4 border border-gray-300 rounded-md">
-      <input v-model="q.question" placeholder="Question"  class="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <input v-model="q.question" placeholder="Question"  class="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 my-2" />
       <div v-for="(opt, oIndex) in q.options" :key="oIndex">
-        <input v-model="q.options[oIndex]" placeholder="Option" class="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <input v-model="q.options[oIndex]" placeholder="Option" class=" border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 my-2" />
         <input type="radio" :name="'correct' + qIndex" :value="oIndex" v-model="q.correctAnswer" />
         Bonne réponse
       </div>
