@@ -24,33 +24,33 @@ onMounted(loadStats)
 
 <template>
   <navbar />
-  <div class="p-6 max-w-4xl mx-auto">
+  <div class="shadow-2xl max-w-4xl mx-auto p-6 my-8 border-solid border-2 border-gray-300 rounded-lg">
 
     <!-- STATS -->
-    <div v-if="stats" class="grid">
+    <div v-if="stats" class="grid ">
       <div class="card ">
-        <h3 class="text-lg font-semibold">Quiz</h3>
-        <p>{{ stats.totalQuizzes }}</p>
+        <h3 class="text-lg font-semibold ">Quiz</h3>
+        <p class="text-2xl font-bold ">{{ stats.totalQuizzes }}</p>
       </div>
 
       <div class="card">
-        <h3 class="text-lg font-semibold">Utilisateurs</h3>
-        <p>{{ stats.totalUsers }}</p>
+        <h3 class="text-lg font-semibold ">Utilisateurs</h3>
+        <p class="text-2xl font-bold">{{ stats.totalUsers }}</p>
       </div>
 
       <div class="card">
-        <h3 class="text-lg font-semibold">Participations</h3>
-        <p>{{ stats.totalResults }}</p>
+        <h3 class="text-lg font-semibold ">Participations</h3>
+        <p class="text-2xl font-bold">{{ stats.totalResults }}</p>
       </div>
 
       <div class="card">
-        <h3 class="text-lg font-semibold">Score moyen</h3>
-        <p>{{ stats.avgScore.toFixed(2) }}</p>
+        <h3 class="text-lg font-semibold ">Score moyen</h3>
+        <p class="text-2xl font-bold">{{ stats.avgScore.toFixed(2) }}</p>
       </div>
     </div>
 
     <!-- LEADERBOARD -->
-    <h2 style="margin-top:30px">🏆 Top joueurs</h2>
+    <h2 class="text-xl font-bold mt-6">Liste des apprenants ayant participé</h2>
 
     <table border="1" cellpadding="10" class="w-full mt-4 text-left"  style="border-collapse: collapse;">
       <thead>
