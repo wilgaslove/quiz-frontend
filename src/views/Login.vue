@@ -6,20 +6,41 @@ import { useAuthStore } from "@/stores/auth"
 const router = useRouter()
 const auth = useAuthStore()
 
+const isLogin = ref(true)
+
+const nom = ref("")
 const email = ref("")
 const password = ref("")
-const error = ref("")
 
-const login = async () => {
+const error = ref("")
+const loading = ref(false)
+
+const submit = async () => {
+
+  error.value = ""
 
   try {
 
-    await auth.login({
-      email: email.value,
-      password: password.value
-    })
+    loading.value = true
 
-    console.log(auth.user)
+    if (isLogin.value) {
+
+      // LOGIN
+      await auth.login({
+        email: email.value,
+        password: password.value
+      })
+
+    } else {
+
+      // REGISTER
+      await auth.register({
+        nom: nom.value,
+        email: email.value,
+        password: password.value
+      })
+
+    }
 
     router.push(
       auth.user?.role === "admin"
@@ -31,7 +52,11 @@ const login = async () => {
 
     error.value =
       err.response?.data?.message ||
-      "Erreur login"
+      "Une erreur est survenue"
+
+  } finally {
+
+    loading.value = false
 
   }
 
@@ -39,30 +64,144 @@ const login = async () => {
 </script>
 
 <template>
-  <div class="login">
-    <h2>Connexion</h2>
+  <div class="login-container">
 
-    <form @submit.prevent="login">
-      <input v-model="email" type="email" placeholder="Email" required />
-      <input v-model="password" type="password" placeholder="Mot de passe" required />
+    <div class="card">
 
-      <button type="submit">Se connecter</button>
-    </form>
+      <h2>
+        {{ isLogin ? "Connexion" : "Créer un compte" }}
+      </h2>
 
-    <p v-if="error" class="error">{{ error }}</p>
+      <form @submit.prevent="submit">
+
+        <!-- NOM -->
+        <input
+          v-if="!isLogin"
+          v-model="nom"
+          type="text"
+          placeholder="Nom"
+          required
+        />
+
+        <!-- EMAIL -->
+        <input
+          v-model="email"
+          type="email"
+          placeholder="Email"
+          required
+        />
+
+        <!-- PASSWORD -->
+        <input
+          v-model="password"
+          type="password"
+          placeholder="Mot de passe"
+          required
+        />
+
+        <button type="submit" :disabled="loading">
+
+          {{
+            loading
+              ? "Chargement..."
+              : isLogin
+                ? "Se connecter"
+                : "Créer un compte"
+          }}
+
+        </button>
+
+      </form>
+
+      <p v-if="error" class="error">
+        {{ error }}
+      </p>
+
+      <!-- SWITCH -->
+      <p class="switch">
+
+        <span v-if="isLogin">
+          Pas encore de compte ?
+        </span>
+
+        <span v-else>
+          Déjà un compte ?
+        </span>
+
+        <button
+          class="link-btn"
+          @click="isLogin = !isLogin"
+        >
+          {{
+            isLogin
+              ? "S'inscrire"
+              : "Se connecter"
+          }}
+        </button>
+
+      </p>
+
+    </div>
+
   </div>
 </template>
 
-
-
 <style scoped>
-.login {
-  max-width: 300px;
-  margin: auto;
-  margin-top: 100px;
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+}
+
+.card {
+  width: 350px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .error {
   color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.switch {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.link-btn {
+  background: none;
+  color: blue;
+  cursor: pointer;
+  margin-left: 5px;
 }
 </style>

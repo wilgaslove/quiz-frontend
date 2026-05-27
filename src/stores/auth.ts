@@ -6,6 +6,12 @@ interface LoginData {
   password: string
 }
 
+interface RegisterData {
+  nom: string
+  email: string
+  password: string
+}
+
 interface User {
   id: string
   nom: string
@@ -26,37 +32,70 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
 
+    // =========================
+    // LOGIN
+    // =========================
     async login(data: LoginData) {
 
       const res = await api.post('/auth/login', data)
 
-      // ✅ TOKEN
       this.token = res.data.token
-
-      // ✅ USER
       this.user = res.data.user
 
-      // ✅ STORAGE
       if (this.token) {
         localStorage.setItem('token', this.token)
       }
+
       localStorage.setItem('user', JSON.stringify(this.user))
     },
 
+    // =========================
+    // REGISTER
+    // =========================
+    async register(data: RegisterData) {
+
+      const res = await api.post('/auth/register', data)
+
+      this.token = res.data.token
+
+      this.user = {
+        id: res.data._id,
+        nom: res.data.nom,
+        email: res.data.email,
+        role: res.data.role,
+      }
+
+      if (this.token) {
+        localStorage.setItem('token', this.token)
+      }
+
+      localStorage.setItem('user', JSON.stringify(this.user))
+    },
+
+    // =========================
+    // INIT
+    // =========================
     init() {
+
       const user = localStorage.getItem('user')
 
       if (user) {
         this.user = JSON.parse(user)
       }
+
     },
 
+    // =========================
+    // LOGOUT
+    // =========================
     logout() {
+
       this.user = null
       this.token = null
 
       localStorage.removeItem('token')
       localStorage.removeItem('user')
+
     },
   },
 })
