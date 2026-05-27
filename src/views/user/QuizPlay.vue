@@ -173,16 +173,16 @@ onUnmounted(() => {
     </div>
   </div>
   <div class="flex justify-center items-center  my-10">
-    <div v-if="quiz" class="p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full max-w-2xl">
+    <div v-if="quiz" class="relative p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full max-w-2xl">
 
-      <div v-if="score !== null" class="mb-4 p-3 bg-green-100 border border-green-400  text-xl text-green-700 rounded w-[12rem]">
+      <div v-if="score !== null" class="absolute top-0 right-0 mb-4 p-3 bg-green-100 border border-green-400  text-xl text-green-700 rounded w-[12rem] ">
         <h2>Votre Note : {{ score }}/{{ quiz.questions.length }}</h2>
       </div>
 
       
       <div v-for="(q, index) in quiz.questions" :key="index" style="margin-bottom:20px">
-        <h3>{{ q.question }}</h3>
-        <div v-for="(option, i) in q.options" :key="i">
+        <h3 class="text-lg font-semibold">{{ q.question }}</h3>
+        <div v-for="(option, i) in q.options" :key="i" class="mt-2">
           <label>
             <!-- <input type="radio" :name="'question' + index" :value="i" -->
             <input
