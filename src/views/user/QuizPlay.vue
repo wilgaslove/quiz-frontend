@@ -167,14 +167,14 @@ onUnmounted(() => {
 
 <template>
   <div class="mx-auto max-w-2xl my-10">
-    <div class="flex justify-between max-w-2xl  mx-10 ">
+    <div v-if="quiz" class="flex justify-between max-w-2xl  mx-10 ">
       <h2 class="text-xl font-bold mb-2">{{ quiz.title }}</h2>
       <p class=" text-lg font-semibold">Temps restant: {{ timeLeft }} s ⏱️</p>
     </div>
   </div>
   <div class="flex justify-center items-center  my-10">
     <div v-if="quiz" class="relative p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full max-w-2xl">
-
+      
       <div v-if="score !== null" class="absolute top-0 right-0 mb-4 p-3 bg-green-100 border border-green-400  text-xl text-green-700 rounded w-[12rem] ">
         <h2>Votre Note : {{ score }}/{{ quiz.questions.length }}</h2>
       </div>
