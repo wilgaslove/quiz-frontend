@@ -4,9 +4,11 @@ import { onMounted } from "vue"
 import { useQuizStore } from "@/stores/quiz"
 import { useRouter } from "vue-router"
 import navbar from "@/components/navbar.vue"
+import { useAuthStore } from "@/stores/auth"
 
 
 const quizStore = useQuizStore()
+const authStore = useAuthStore()
 
 // Démarrer les quiz
 const router = useRouter()
@@ -24,7 +26,7 @@ onMounted(() => {
 
 <template>
 
-  <div class="" >
+  <div class="" v-if="authStore.user?.role === 'admin'">
     <navbar />
   </div>
 
