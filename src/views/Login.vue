@@ -79,7 +79,7 @@ const submit = async () => {
           v-if="!isLogin"
           v-model="nom"
           type="text"
-          placeholder="Nom"
+          placeholder="Nom prénoms"
           required
         />
 
@@ -95,11 +95,11 @@ const submit = async () => {
         <input
           v-model="password"
           type="password"
-          placeholder="Mot de passe"
+          placeholder="xxxxxxx"
           required
         />
 
-        <button type="submit" :disabled="loading">
+        <button type="submit" :disabled="loading" class=" w-[10rem] mx-auto bg-blue-500  text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
 
           {{
             loading
@@ -129,7 +129,7 @@ const submit = async () => {
         </span>
 
         <button
-          class="link-btn"
+          class="link-btn font-bold ml-2 border-double border-4 border-gray-500 rounded-lg px-2 py-1  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-300 duration-300  "
           @click="isLogin = !isLogin"
         >
           {{
@@ -163,10 +163,7 @@ const submit = async () => {
   box-shadow: 0 0 20px rgba(0,0,0,0.08);
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
+
 
 form {
   display: flex;
@@ -180,12 +177,7 @@ input {
   border-radius: 8px;
 }
 
-button {
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
+
 
 .error {
   color: red;
@@ -198,10 +190,5 @@ button {
   text-align: center;
 }
 
-.link-btn {
-  background: none;
-  color: blue;
-  cursor: pointer;
-  margin-left: 5px;
-}
+
 </style>
