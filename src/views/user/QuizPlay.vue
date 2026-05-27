@@ -196,11 +196,11 @@ onUnmounted(() => {
         </div>
       </div>
       <div class="flex justify-around">
-        <button @click="submitQuiz" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
+        <button @click="submitQuiz" class="transition ease-in-out delay-150 bg-red-600 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
           Soumettre
         </button>
         
-         <button @click="$router.back()" class="transition ease-in-out delay-150 bg-gray-500 hover:-translate-y-1 hover:scale-110 hover:bg-gray-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
+         <button @click="$router.back()" class="transition ease-in-out delay-150 bg-blue-600 hover:-translate-y-1 hover:scale-110 hover:bg-gray-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
         Retour
             </button>
       </div>
