@@ -15,6 +15,9 @@ const password = ref("")
 const error = ref("")
 const loading = ref(false)
 
+//la visialisation du password
+const showPassword = ref(false)
+
 const submit = async () => {
 
   error.value = ""
@@ -75,31 +78,24 @@ const submit = async () => {
       <form @submit.prevent="submit">
 
         <!-- NOM -->
-        <input
-          v-if="!isLogin"
-          v-model="nom"
-          type="text"
-          placeholder="Nom prénoms"
-          required
-        />
+        <input v-if="!isLogin" v-model="nom" type="text" placeholder="Nom prénoms" required />
 
         <!-- EMAIL -->
-        <input
-          v-model="email"
-          type="email"
-          placeholder="Email"
-          required
-        />
+        <input v-model="email" type="email" placeholder="Email" required />
 
         <!-- PASSWORD -->
-        <input
-          v-model="password"
-          type="password"
-          placeholder="xxxxxxx"
-          required
-        />
+        <div class="password-field">
 
-        <button type="submit" :disabled="loading" class=" w-[10rem] mx-auto bg-blue-500  text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
+          <input v-model="password" :type="showPassword ? 'text' : 'password'" placeholder="xxxxxxx" required />
+
+          <span class="eye" @click="showPassword = !showPassword">
+            {{ showPassword ? '👁' : '👁️' }}
+          </span>
+
+        </div>
+
+        <button type="submit" :disabled="loading"
+          class=" w-[10rem] mx-auto bg-blue-500  text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
 
           {{
             loading
@@ -130,8 +126,7 @@ const submit = async () => {
 
         <button
           class="link-btn font-bold ml-2 border-double border-4 border-gray-500 rounded-lg px-2 py-1  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-300 duration-300  "
-          @click="isLogin = !isLogin"
-        >
+          @click="isLogin = !isLogin">
           {{
             isLogin
               ? "S'inscrire"
@@ -147,6 +142,27 @@ const submit = async () => {
 </template>
 
 <style scoped>
+
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 45px;
+}
+
+.eye {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+}
+
+
 .login-container {
   min-height: 100vh;
   display: flex;
@@ -160,7 +176,7 @@ const submit = async () => {
   background: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -189,6 +205,4 @@ input {
   margin-top: 20px;
   text-align: center;
 }
-
-
 </style>
