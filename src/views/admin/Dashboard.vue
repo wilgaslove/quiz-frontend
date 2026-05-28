@@ -24,7 +24,7 @@ onMounted(loadStats)
 
 <template>
   <navbar />
-  <div class="shadow-2xl max-w-4xl mx-auto p-6 my-8 border-solid border-2 border-gray-300 rounded-lg">
+  <div class="shadow-2xl max-w-4xl mx-auto p-6 my-[6rem] border-solid border-2 border-gray-300 rounded-lg">
 
     <!-- STATS -->
     <div v-if="stats" class="grid ">
