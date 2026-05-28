@@ -30,12 +30,9 @@ onMounted(() => {
   </div>
 
 
-  <div class="relative">
-    <input type="image" src="src\assets\images\off.jpg" alt="logo" class="">
+  <div class="relative" v-if="authStore.user?.role !== 'admin'">
+    <img src="@/assets/images/off.jpg" alt="image logout" class="fixed size-[5rem] cursor-pointer  top-0 right-0  " @click="authStore.logout(); router.push('/login')" />
   </div>
-
-  <!-- <router-link to="/login"
-                class=" rounded-full transition ease-in-out delay-150 bg-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-600 duration-300 p-2 rounded-full">X</router-link> -->
 
   <div class="dashboard">
     <h1 class="text-2xl font-bold mb-4">Liste des Quiz</h1>
