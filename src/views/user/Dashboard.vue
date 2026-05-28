@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { onMounted } from "vue"
 import { useQuizStore } from "@/stores/quiz"
@@ -30,6 +29,14 @@ onMounted(() => {
     <navbar />
   </div>
 
+
+  <div class="relative">
+    <input type="image" src="src\assets\images\off.jpg" alt="logo" class="">
+  </div>
+
+  <!-- <router-link to="/login"
+                class=" rounded-full transition ease-in-out delay-150 bg-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-600 duration-300 p-2 rounded-full">X</router-link> -->
+
   <div class="dashboard">
     <h1 class="text-2xl font-bold mb-4">Liste des Quiz</h1>
 
@@ -40,7 +47,8 @@ onMounted(() => {
       <p class="text-gray-600">{{ quiz.description }}</p>
       <p class="text-lg font-semibold">Durée : {{ quiz.duration }} secondes</p>
 
-      <button @click="startQuiz(quiz._id)" class="transition ease-in-out delay-150 bg-green-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">Démarrer</button>
+      <button @click="startQuiz(quiz._id)"
+        class="transition ease-in-out delay-150 bg-green-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">Démarrer</button>
     </div>
   </div>
 </template>
