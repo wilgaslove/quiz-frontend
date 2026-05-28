@@ -2,11 +2,11 @@
 
 </script>
 <template>
-    <nav>
+    <nav class="relative">
         <!-- <h1>Quiz App</h1> -->
 
         <div
-            class="flex justify-center gap-[80px] p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full bg-gray-800 text-white ">
+            class="flex justify-center fixed top-0 gap-[80px] p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full bg-gray-800 text-white ">
             <router-link to="/"
                 class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-4 py-2 rounded-lg">Accueil</router-link>
             <router-link to="/admin/create"
