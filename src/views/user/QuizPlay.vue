@@ -65,17 +65,7 @@ const loadQuiz = async () => {
   }
 }
 
-// Timer
-// const startTimer = (endTime: number) => {
-//   timer = setInterval(() => {
-//     if (timeLeft.value > 0) {
-//       timeLeft.value--
-//     } else {
-//       clearInterval(timer)
-//       submitQuiz()
-//     }
-//   }, 1000)
-// }
+
 
 const startTimer = (endTime: number) => {
   timer = setInterval(() => {
@@ -117,24 +107,7 @@ const selectAnswer = (questionIndex: number, optionIndex: number) => {
 
 
 
-// Soumission du quiz
-// const submitQuiz = async () => {
 
-//   clearInterval(timer)
-
-//   try {
-//     const res = await api.post(`/results/quiz/${route.params.id}/submit`, {
-//       answers: answers.value
-//     })
-
-//     score.value = res.data.score
-
-//   } catch (err: any) {
-
-//     alert(err.response?.data?.message || "Erreur")
-
-//   }
-// }
 
 
 const isSubmitting = ref(false);
