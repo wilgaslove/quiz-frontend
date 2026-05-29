@@ -12,6 +12,23 @@ const score = ref<number | null>(null)
 const timeLeft = ref(0)
 let timer: any = null
 
+// formatage du temps
+const formatTime = (seconds: number) => {
+
+  const hrs = Math.floor(seconds / 3600)
+
+  const mins = Math.floor((seconds % 3600) / 60)
+
+  const secs = seconds % 60
+
+  return [
+    hrs.toString().padStart(2, '0'),
+    mins.toString().padStart(2, '0'),
+    secs.toString().padStart(2, '0')
+  ].join(':')
+
+}
+
 
 
 
@@ -112,7 +129,7 @@ onUnmounted(() => {
   <div class="mx-auto max-w-2xl my-10">
     <div v-if="quiz" class="flex justify-between max-w-2xl  mx-10 ">
       <h2 class="text-xl font-bold mb-2">{{ quiz.title }}</h2>
-      <p class=" text-lg font-semibold">Temps restant: {{ timeLeft }} s ⏱️</p>
+      <p class=" text-lg font-semibold">Temps restant: {{ formatTime(timeLeft) }} ⏱️</p>
     </div>
   </div>
   <div class="flex justify-center items-center  my-10">
