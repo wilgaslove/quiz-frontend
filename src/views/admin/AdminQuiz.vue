@@ -33,6 +33,8 @@ onMounted(loadQuizzes)
 </script>
 
 <template>
+
+  // Afficher la navbar uniquement pour les admins
   <navbar />
   <div>
     <h1>Admin Quiz</h1>
