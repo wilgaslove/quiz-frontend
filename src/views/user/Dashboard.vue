@@ -15,6 +15,18 @@ const startQuiz = (id: string) => {
   router.push(`/quiz/${id}`)
 }
 
+const formatDuration = (seconds: number) => {
+  const hrs = Math.floor(seconds / 3600)
+  const mins = Math.floor((seconds % 3600) / 60)
+  const secs = seconds % 60
+
+  return `${hrs.toString().padStart(2, '0')}h ${mins
+    .toString()
+    .padStart(2, '0')}m ${secs
+    .toString()
+    .padStart(2, '0')}s`
+}
+
 
 onMounted(() => {
   quizStore.fetchQuizzes()
