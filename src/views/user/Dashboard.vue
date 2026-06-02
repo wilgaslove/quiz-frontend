@@ -15,6 +15,7 @@ const startQuiz = (id: string) => {
   router.push(`/quiz/${id}`)
 }
 
+
 const formatDuration = (seconds: number) => {
   const hrs = Math.floor(seconds / 3600)
   const mins = Math.floor((seconds % 3600) / 60)
@@ -43,7 +44,7 @@ onMounted(() => {
 
 
   <div class="relative" v-if="authStore.user?.role !== 'admin'">
-    <img src="@/assets/images/off.jpg" alt="image logout" class="fixed size-[5rem] cursor-pointer  top-0 right-0  " @click="authStore.logout(); router.push('/login')" />
+    <img src="@/assets/images/off.jpg" alt="image logout" class="fixed size-[5rem] cursor-pointer  top-0 right-3  " @click="authStore.logout(); router.push('/login')" />
   </div>
 
   <div class="dashboard">
