@@ -54,7 +54,7 @@ onMounted(() => {
     <div v-for="quiz in quizStore.quizzes" :key="quiz._id" class="quiz-card rounded-lg">
       <h3 class="text-lg font-semibold">{{ quiz.title }}</h3>
       <p class="text-gray-600">{{ quiz.description }}</p>
-      <p class="text-lg font-semibold">Durée : {{ quiz.duration }} secondes</p>
+      <p class="text-lg font-semibold">Durée : {{ formatDuration(quiz.duration) }} </p>
 
       <button @click="startQuiz(quiz._id)"
         class="transition ease-in-out delay-150 bg-green-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">Démarrer</button>
