@@ -47,6 +47,14 @@ onMounted(() => {
     <img src="@/assets/images/off.jpg" alt="image logout" class="fixed size-[5rem] cursor-pointer  top-0 right-3  " @click="authStore.logout(); router.push('/login')" />
   </div>
 
+  <div class="reletive">
+    <p class="fixed top-3 left-3 text-3xl font-bold"> Welcom {{ authStore.user?.nom }} </p>
+  </div>
+
+  <div class="reletive" v-if="authStore.user?.role === 'admin'">
+    <p class="fixed top-3 left-3 text-3xl text-white font-bold"> Welcom {{ authStore.user?.nom }} </p>
+  </div>
+
   <div class="dashboard">
     <h1 class="text-2xl font-bold mb-4">Liste des Quiz</h1>
 
