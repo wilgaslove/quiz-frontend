@@ -86,6 +86,7 @@ const autoSave = () => {
   }, 500) // attend 500ms après dernière action
 }
 
+
 // Sélection d'une réponse
 const selectAnswer = (questionIndex: number, optionIndex: number) => {
   answers.value[questionIndex] = optionIndex
