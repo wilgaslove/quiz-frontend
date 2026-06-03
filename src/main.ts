@@ -1,16 +1,18 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { useThemeStore } from '@/stores/theme'
 
 import App from './App.vue'
 import router from './router'
 import './assets/main.css'
-// import { useAuthStore } from './stores/auth'
 
 const app = createApp(App)
-// const auth = useAuthStore()
-// auth.init() // Initialiser l'état de l'authentification à partir du localStorage
 
 app.use(createPinia())
 app.use(router)
+
+const themeStore = useThemeStore()
+themeStore.initTheme()
+
 
 app.mount('#app')
