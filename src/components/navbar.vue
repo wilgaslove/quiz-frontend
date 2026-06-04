@@ -1,5 +1,7 @@
 <script setup>
+import { useThemeStore } from '@/stores/theme'
 
+const themeStore = useThemeStore()
 </script>
 <template>
     <nav class="relative">
@@ -18,4 +20,10 @@
                 class="transition ease-in-out delay-150 bg-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-600 duration-300 px-4 py-2 rounded-lg">Déconnexion</router-link>
         </div>
     </nav>
+     <button
+    @click="themeStore.toggleTheme()"
+    class="px-4 py-2 border rounded"
+  >
+    {{ themeStore.dark ? '☀️ Clair' : '🌙 Sombre' }}
+  </button>
 </template>

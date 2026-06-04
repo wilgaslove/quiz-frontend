@@ -2,9 +2,11 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { useAuthStore } from "@/stores/auth"
+import { useThemeStore } from '@/stores/theme'
 
 const router = useRouter()
 const auth = useAuthStore()
+const themeStore = useThemeStore()
 
 const isLogin = ref(true)
 
@@ -15,34 +17,25 @@ const password = ref("")
 const error = ref("")
 const loading = ref(false)
 
-//la visialisation du password
 const showPassword = ref(false)
 
 const submit = async () => {
-
   error.value = ""
 
   try {
-
     loading.value = true
 
     if (isLogin.value) {
-
-      // LOGIN
       await auth.login({
         email: email.value,
-        password: password.value
+        password: password.value,
       })
-
     } else {
-
-      // REGISTER
       await auth.register({
         nom: nom.value,
         email: email.value,
-        password: password.value
+        password: password.value,
       })
-
     }
 
     router.push(
@@ -50,53 +43,96 @@ const submit = async () => {
         ? "/admin"
         : "/dashboard"
     )
-
   } catch (err: any) {
-
     error.value =
       err.response?.data?.message ||
       "Une erreur est survenue"
-
   } finally {
-
     loading.value = false
-
   }
-
 }
 </script>
 
 <template>
-  <div class="login-container">
 
-    <div class="card">
-
-      <h2>
+  <div class="absolute top-4 right-4">
+  <button
+    @click="themeStore.toggleTheme()"
+    class="px-3 py-2 rounded-lg border"
+  >
+    {{ themeStore.dark ? '☀️' : '🌙' }}
+  </button>
+</div>
+  <div
+    class="min-h-screen flex items-center justify-center
+           bg-gray-100 dark:bg-gray-900
+           text-gray-900 dark:text-white"
+  >
+    <div
+      class="w-[380px] p-8 rounded-xl shadow-lg
+             bg-white dark:bg-gray-800"
+    >
+      <h2 class="text-2xl font-bold text-center mb-6">
         {{ isLogin ? "Connexion" : "Créer un compte" }}
       </h2>
 
-      <form @submit.prevent="submit">
-
+      <form @submit.prevent="submit" class="flex flex-col gap-4">
+        
         <!-- NOM -->
-        <input v-if="!isLogin" v-model="nom" type="text" placeholder="Nom prénoms" required />
+        <input
+          v-if="!isLogin"
+          v-model="nom"
+          type="text"
+          placeholder="Nom prénoms"
+          required
+          class="p-3 rounded-lg border
+                 bg-white dark:bg-gray-700
+                 dark:text-white
+                 border-gray-300 dark:border-gray-600"
+        />
 
         <!-- EMAIL -->
-        <input v-model="email" type="email" placeholder="Email" required />
+        <input
+          v-model="email"
+          type="email"
+          placeholder="Email"
+          required
+          class="p-3 rounded-lg border
+                 bg-white dark:bg-gray-700
+                 dark:text-white
+                 border-gray-300 dark:border-gray-600"
+        />
 
         <!-- PASSWORD -->
-        <div class="password-field">
+        <div class="relative">
+          <input
+            v-model="password"
+            :type="showPassword ? 'text' : 'password'"
+            placeholder="Mot de passe"
+            required
+            class="w-full p-3 pr-12 rounded-lg border
+                   bg-white dark:bg-gray-700
+                   dark:text-white
+                   border-gray-300 dark:border-gray-600"
+          />
 
-          <input v-model="password" :type="showPassword ? 'text' : 'password'" placeholder="xxxxxxx" required />
-
-          <span class="eye" @click="showPassword = !showPassword">
-            {{ showPassword ? '👁' : '👁️' }}
-          </span>
-
+          <button
+            type="button"
+            class="absolute right-3 top-1/2 -translate-y-1/2"
+            @click="showPassword = !showPassword"
+          >
+            {{ showPassword ? "🙈" : "👁️" }}
+          </button>
         </div>
 
-        <button type="submit" :disabled="loading"
-          class=" w-[10rem] mx-auto bg-blue-500  text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
-
+        <button
+          type="submit"
+          :disabled="loading"
+          class="mx-auto w-40 bg-blue-500 text-white py-2 px-4 rounded-lg
+                 hover:bg-blue-600
+                 disabled:opacity-50
+                 transition duration-300"
+        >
           {{
             loading
               ? "Chargement..."
@@ -104,18 +140,17 @@ const submit = async () => {
                 ? "Se connecter"
                 : "Créer un compte"
           }}
-
         </button>
-
       </form>
 
-      <p v-if="error" class="error">
+      <p
+        v-if="error"
+        class="text-red-500 text-center mt-4"
+      >
         {{ error }}
       </p>
 
-      <!-- SWITCH -->
-      <p class="switch">
-
+      <div class="text-center mt-6">
         <span v-if="isLogin">
           Pas encore de compte ?
         </span>
@@ -125,84 +160,19 @@ const submit = async () => {
         </span>
 
         <button
-          class="bg-blue-500 text-white font-bold ml-2 border-double border-4 border-blue-500 rounded-lg px-2 py-1  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-blue-300 duration-300  "
-          @click="isLogin = !isLogin">
+          type="button"
+          @click="isLogin = !isLogin"
+          class="ml-2 px-3 py-1 rounded-lg
+                 bg-blue-500 text-white
+                 hover:bg-blue-600"
+        >
           {{
             isLogin
               ? "S'inscrire"
               : "Se connecter"
           }}
         </button>
-
-      </p>
-
+      </div>
     </div>
-
   </div>
 </template>
-
-<style scoped>
-
-.password-field {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-field input {
-  width: 100%;
-  padding-right: 45px;
-}
-
-.eye {
-  position: absolute;
-  right: 15px;
-  cursor: pointer;
-  user-select: none;
-  font-size: 18px;
-}
-
-
-.login-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f5f5f5;
-}
-
-.card {
-  width: 350px;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-}
-
-
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-input {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-
-
-.error {
-  color: red;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.switch {
-  margin-top: 20px;
-  text-align: center;
-}
-</style>
