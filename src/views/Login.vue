@@ -121,7 +121,7 @@ const submit = async () => {
             class="absolute right-3 top-1/2 -translate-y-1/2"
             @click="showPassword = !showPassword"
           >
-            {{ showPassword ? "🙈" : "👁️" }}
+            {{ showPassword ? "👁️" : "👁️" }}
           </button>
         </div>
 
