@@ -163,9 +163,9 @@ const submit = async () => {
         <button
           type="button"
           @click="isLogin = !isLogin"
-          class="ml-2 px-3 py-1 rounded-lg
-                 bg-blue-500 text-white
-                 hover:bg-blue-600"
+          class="ml-2 
+                  text-blue-600
+                 "
         >
           {{
             isLogin
