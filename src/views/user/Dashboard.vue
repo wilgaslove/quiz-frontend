@@ -4,10 +4,12 @@ import { useQuizStore } from "@/stores/quiz"
 import { useRouter } from "vue-router"
 import navbar from "@/components/navbar.vue"
 import { useAuthStore } from "@/stores/auth"
+import { useThemeStore } from "@/stores/theme"
 
 
 const quizStore = useQuizStore()
 const authStore = useAuthStore()
+const themeStore = useThemeStore()
 
 // Démarrer les quiz
 const router = useRouter()
@@ -24,8 +26,8 @@ const formatDuration = (seconds: number) => {
   return `${hrs.toString().padStart(2, '0')}h ${mins
     .toString()
     .padStart(2, '0')}m ${secs
-    .toString()
-    .padStart(2, '0')}s`
+      .toString()
+      .padStart(2, '0')}s`
 }
 
 
@@ -44,17 +46,22 @@ onMounted(() => {
 
 
   <div class="relative" v-if="authStore.user?.role !== 'admin'">
-    <img src="@/assets/images/off.jpg" alt="image logout" class="fixed size-[5rem] cursor-pointer  top-0 right-3  " @click="authStore.logout(); router.push('/login')" />
+    <img src="@/assets/images/off.jpg" alt="image logout" class="fixed size-[5rem] cursor-pointer  top-0 right-3  "
+      @click="authStore.logout(); router.push('/login')" />
+
+    <div class="absolute top-4 right-4">
+      <button @click="themeStore.toggleTheme()" class="px-3 py-2 rounded-lg border">
+        {{ themeStore.dark ? '☀️' : '🌙' }}
+      </button>
+    </div>
+
   </div>
 
   <div class="reletive">
     <p class="fixed top-3 left-3 text-3xl font-bold"> Welcom {{ authStore.user?.nom }} </p>
   </div>
 
-  <div class="reletive" v-if="authStore.user?.role === 'admin'">
-    <p class="fixed top-3 left-3 text-3xl text-white font-bold"> Welcom {{ authStore.user?.nom }} </p>
-  </div>
-
+  
   <div class="dashboard">
     <h1 class="text-2xl font-bold mb-4">Liste des Quiz</h1>
 
