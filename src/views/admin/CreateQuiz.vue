@@ -62,7 +62,7 @@ const addOption = (qIndex: number) => {
   <navbar />
 
   <div class="py-[6rem]">
-    <div class=" shadow-2xl mx-auto max-w-2xl  border-solid border-2 border-gray-300 p-6 rounded-lg">
+    <div class="shadow-2xl mx-auto max-w-2xl  border-solid border-2 border-gray-300 p-6 rounded-lg">
       <h1 class="text-2xl font-bold mb-4">Créer un Quiz</h1>
       <div class="grid grid-rows-2 grid-flow-col  gap-4">
         <input v-model="title" placeholder="Titre"

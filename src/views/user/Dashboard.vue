@@ -45,26 +45,26 @@ onMounted(() => {
   </div>
 
 
-  
-    <div  v-if="authStore.user?.role !== 'admin'">
-      <img src="@/assets/images/off.jpg" alt="image logout"
-        class="fixed top-1  right-3 size-[3rem] cursor-pointer  top-2 right-3  "
-        @click="authStore.logout(); router.push('/login')" />
-  
-      <div class="fixed top-3 right-[5rem]">
-        <button @click="themeStore.toggleTheme()" class="px-3 py-2 rounded-lg border">
-          {{ themeStore.dark ? '☀️' : '🌙' }}
-        </button>
-      </div>
-  
-        <p class="   text-3xl font-bold"> Welcom {{ authStore.user?.nom }} </p>
-  
+
+  <div v-if="authStore.user?.role !== 'admin'">
+    <img src="@/assets/images/off.jpg" alt="image logout"
+      class="fixed top-1  right-3 size-[3rem] cursor-pointer  top-2 right-3  "
+      @click="authStore.logout(); router.push('/login')" />
+
+    <div class="fixed top-3 right-[5rem]">
+      <button @click="themeStore.toggleTheme()" class="px-3 py-2 rounded-lg border">
+        {{ themeStore.dark ? '☀️' : '🌙' }}
+      </button>
     </div>
 
+    <p class="text-3xl font-bold"> Welcom {{ authStore.user?.nom }} </p>
+
+  </div>
 
 
 
-  <div class="dashboard">
+
+  <div class="w-[40%] mx-auto py-[6rem]">
     <h1 class="text-2xl font-bold mb-4">Liste des Quiz</h1>
 
     <p v-if="quizStore.loading">Chargement...</p>
@@ -75,16 +75,14 @@ onMounted(() => {
       <p class="text-lg font-semibold">Durée : {{ formatDuration(quiz.duration) }} </p>
 
       <button @click="startQuiz(quiz._id)"
-        class="transition ease-in-out delay-150 bg-green-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">Démarrer</button>
+        class="transition ease-in-out delay-150 bg-green-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
+        Démarrer
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.dashboard {
-  max-width: 600px;
-  margin: 40px auto;
-}
 
 .quiz-card {
   border: 1px solid #ddd;
