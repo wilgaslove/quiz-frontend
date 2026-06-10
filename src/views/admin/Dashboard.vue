@@ -28,22 +28,22 @@ onMounted(loadStats)
 
     <!-- STATS -->
     <div v-if="stats" class="grid ">
-      <div class="card ">
+      <div class=" bg-gray-100 p-[20px] text-black text-center border-solid border-2 border-gray-300 rounded-lg w-[150px] shadow-2xl ">
         <h3 class="text-lg font-semibold ">Quiz</h3>
-        <p class="text-2xl font-bold ">{{ stats.totalQuizzes }}</p>
+        <p class=" text-2xl font-bold ">{{ stats.totalQuizzes }}</p>
       </div>
 
-      <div class="card">
-        <h3 class="text-lg font-semibold ">Utilisateurs</h3>
+      <div class=" bg-gray-100 p-[20px] text-black text-center border-solid border-2 border-gray-300 rounded-lg w-[150px] shadow-2xl ">
+        <h3 class=" text-lg font-semibold ">Utilisateurs</h3>
         <p class="text-2xl font-bold">{{ stats.totalUsers }}</p>
       </div>
 
-      <div class="card">
+      <div class=" bg-gray-100 p-[20px] text-black text-center border-solid border-2 border-gray-300 rounded-lg w-[150px] shadow-2xl ">
         <h3 class="text-lg font-semibold ">Participations</h3>
         <p class="text-2xl font-bold">{{ stats.totalResults }}</p>
       </div>
 
-      <div class="card">
+      <div class=" bg-gray-100 p-[20px] text-black text-center border-solid border-2 border-gray-300 rounded-lg w-[150px] shadow-2xl ">
         <h3 class="text-lg font-semibold ">Score moyen</h3>
         <p class="text-2xl font-bold">{{ stats.avgScore.toFixed(2) }}</p>
       </div>
@@ -81,10 +81,10 @@ onMounted(loadStats)
 }
 
 .card {
-  background: #f5f5f5;
+  /* background: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
   width: 150px;
-  text-align: center;
+  text-align: center; */
 }
 </style>
