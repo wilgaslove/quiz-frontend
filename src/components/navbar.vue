@@ -5,8 +5,7 @@ const themeStore = useThemeStore()
 </script>
 <template>
     <nav class="relative ">
-        <!-- <h1>Quiz App</h1> -->
-
+       
         <div
             class="flex justify-center fixed top-0 gap-[80px] p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full bg-gray-800 text-white ">
             <router-link to="/"
