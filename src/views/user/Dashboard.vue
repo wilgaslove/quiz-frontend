@@ -45,23 +45,25 @@ onMounted(() => {
   </div>
 
 
-  <div class="" v-if="authStore.user?.role !== 'admin'">
-    <img src="@/assets/images/off.jpg" alt="image logout" class="absolute top-1  right-3 size-[3rem] cursor-pointer  top-0 right-3  "
-      @click="authStore.logout(); router.push('/login')" />
-
-    <div class="absolute top-1 right-[5rem]">
-      <button @click="themeStore.toggleTheme()" class="px-3 py-2 rounded-lg border">
-        {{ themeStore.dark ? '☀️' : '🌙' }}
-      </button>
+  
+    <div  v-if="authStore.user?.role !== 'admin'">
+      <img src="@/assets/images/off.jpg" alt="image logout"
+        class="fixed top-1  right-3 size-[3rem] cursor-pointer  top-2 right-3  "
+        @click="authStore.logout(); router.push('/login')" />
+  
+      <div class="fixed top-3 right-[5rem]">
+        <button @click="themeStore.toggleTheme()" class="px-3 py-2 rounded-lg border">
+          {{ themeStore.dark ? '☀️' : '🌙' }}
+        </button>
+      </div>
+  
+        <p class="   text-3xl font-bold"> Welcom {{ authStore.user?.nom }} </p>
+  
     </div>
 
-  </div>
 
-  <div class="">
-    <p class=" text-3xl font-bold"> Welcom {{ authStore.user?.nom }} </p>
-  </div>
 
-  
+
   <div class="dashboard">
     <h1 class="text-2xl font-bold mb-4">Liste des Quiz</h1>
 
