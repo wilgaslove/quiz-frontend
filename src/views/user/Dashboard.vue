@@ -83,7 +83,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
 .quiz-card {
   border: 1px solid #ddd;
   padding: 15px;
