@@ -5,7 +5,7 @@ const themeStore = useThemeStore()
 </script>
 <template>
     <nav class="relative ">
-       
+
         <div
             class="flex justify-center fixed top-0 gap-[80px] p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full bg-gray-800 text-white ">
             <router-link to="/"
@@ -22,6 +22,7 @@ const themeStore = useThemeStore()
                 <button @click="themeStore.toggleTheme()" class="px-3 py-2 rounded-lg border">
                     {{ themeStore.dark ? '☀️' : '🌙' }}
                 </button>
+
             </div>
 
         </div>
