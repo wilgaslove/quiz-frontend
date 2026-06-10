@@ -127,50 +127,44 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-2xl my-10">
-    <div v-if="quiz" class="flex justify-between max-w-2xl  mx-10 ">
-      <h2 class="text-xl font-bold mb-2">{{ quiz.title }}</h2>
-      <p class=" text-lg font-semibold">Temps restant: {{ formatTime(timeLeft) }} ⏱️</p>
-    </div>
-  </div>
-  <div class="flex justify-center items-center  my-10">
-    <div v-if="quiz" class="relative p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full max-w-2xl">
-      
-      <div v-if="score !== null" class="absolute top-0 right-0 mb-4 p-3 bg-green-100 border border-green-400  text-xl text-green-700 rounded w-[12rem] ">
-        <h2>Votre Note : {{ score }}/{{ quiz.questions.length }}</h2>
+  <div class="py-[4rem]">
+    <div class="mx-auto max-w-2xl my-10 ">
+      <div v-if="quiz" class="flex justify-between max-w-2xl  mx-10 ">
+        <h2 class="text-xl font-bold mb-2">{{ quiz.title }}</h2>
+        <p class=" text-lg font-semibold">Temps restant: {{ formatTime(timeLeft) }} ⏱️</p>
       </div>
-
-      
-      <div v-for="(q, index) in quiz.questions" :key="index" style="margin-bottom:20px">
-        <h3 class="text-lg font-semibold">{{ q.question }}</h3>
-        <div v-for="(option, i) in q.options" :key="i" class="mt-2">
-          <label>
-            <!-- <input type="radio" :name="'question' + index" :value="i" -->
-            <input
-            type="radio"
-            :name="'question' + index"
-            :value="i"
-            :checked="answers[Number(index)] === i"
-              @change="() => selectAnswer(Number(index), Number(i))" />
-            {{ option }}
-          </label>
+    </div>
+    <div class="flex justify-center items-center  my-10">
+      <div v-if="quiz" class="relative p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full max-w-2xl">
+        <div v-if="score !== null"
+          class="absolute top-0 right-0 mb-4 p-3 bg-green-100 border border-green-400  text-xl text-green-700 rounded w-[12rem] ">
+          <h2>Votre Note : {{ score }}/{{ quiz.questions.length }}</h2>
+        </div>
+        <div v-for="(q, index) in quiz.questions" :key="index" style="margin-bottom:20px">
+          <h3 class="text-lg font-semibold">{{ q.question }}</h3>
+          <div v-for="(option, i) in q.options" :key="i" class="mt-2">
+            <label>
+              <!-- <input type="radio" :name="'question' + index" :value="i" -->
+              <input type="radio" :name="'question' + index" :value="i" :checked="answers[Number(index)] === i"
+                @change="() => selectAnswer(Number(index), Number(i))" />
+              {{ option }}
+            </label>
+          </div>
+        </div>
+        <div class="flex justify-around">
+          <button @click="submitQuiz"
+            class="transition ease-in-out delay-150 bg-red-600 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
+            Soumettre
+          </button>
+          <button @click="$router.back()"
+            class="transition ease-in-out delay-150 bg-blue-600 hover:-translate-y-1 hover:scale-110 hover:bg-gray-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
+            Retour
+          </button>
         </div>
       </div>
-      <div class="flex justify-around">
-        <button @click="submitQuiz" class="transition ease-in-out delay-150 bg-red-600 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
-          Soumettre
-        </button>
-        
-         <button @click="$router.back()" class="transition ease-in-out delay-150 bg-blue-600 hover:-translate-y-1 hover:scale-110 hover:bg-gray-600 duration-300 px-4 py-2 text-white border-double border-4 rounded-lg">
-        Retour
-            </button>
-      </div>
-      
-
-      
     </div>
+    <div class="flex justify-center items-center  my-10">
   </div>
-  <div class="flex justify-center items-center  my-10">
-   
+
   </div>
 </template>

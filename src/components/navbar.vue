@@ -1,9 +1,12 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
+import { useAuthStore } from '@/stores/auth'
 
 const themeStore = useThemeStore()
+const authStore = useAuthStore()
 </script>
 <template>
+    <div> Welcom {{ authStore.user?.nom }} </div>
     <nav class="relative ">
 
         <div
