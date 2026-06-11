@@ -5,6 +5,7 @@ import { useRouter } from "vue-router"
 import navbar from "@/components/navbar.vue"
 import { useAuthStore } from "@/stores/auth"
 import { useThemeStore } from "@/stores/theme"
+import footer from "@/components/footer.vue"
 
 
 const quizStore = useQuizStore()
@@ -80,6 +81,11 @@ onMounted(() => {
       </button>
     </div>
   </div>
+  
+  <div>
+    <footer />
+  </div>
+
 </template>
 
 <style scoped>

@@ -3,6 +3,7 @@ import { ref } from "vue"
 import { useRouter } from "vue-router"
 import api from "@/services/api"
 import navbar from "@/components/navbar.vue"
+import footer from "@/components/footer.vue"
 
 const router = useRouter()
 
@@ -60,6 +61,9 @@ const addOption = (qIndex: number) => {
 <template>
 
   <navbar />
+
+  <footer />
+
 
   <div class="py-[6rem]">
     <div class="shadow-2xl mx-auto max-w-2xl  border-solid border-2 border-gray-300 p-6 rounded-lg">
