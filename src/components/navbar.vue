@@ -9,7 +9,7 @@ const authStore = useAuthStore()
     <nav class="relative ">
         
         <div
-        class="flex justify-center fixed top-0 gap-[80px] p-4 border-double border-4 border-gray-300 rounded-lg shadow-md w-full text-white  ">
+        class="flex justify-center fixed top-0 gap-[80px] p-4 border-double border-4 bg-gray-100 border-gray-300 rounded-lg shadow-md w-full text-white  ">
 
         <!-- <div class="fixed left-4 text-lg font-bold bg-gray-800 text-white p-2 rounded-lg"> Welcom {{ authStore.user?.nom }} </div> -->
 
