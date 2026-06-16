@@ -2,7 +2,6 @@
 import { onMounted, ref } from "vue"
 import { useRouter } from "vue-router"
 import api from "@/services/api"
-
 import navbar from "@/components/navbar.vue"
 
 // const quizzes = ref([])
