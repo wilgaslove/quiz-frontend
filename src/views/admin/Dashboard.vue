@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue"
 import api from "@/services/api"
 import navbar from "@/components/navbar.vue" 
-import footer from "@/components/footer.vue"
+import Footer from "@/components/footer.vue"
 
 const stats = ref<any>(null)
 const leaderboard = ref<any[]>([])
@@ -71,7 +71,9 @@ onMounted(loadStats)
       </table>
     </div>
   </div>
-    <footer />
+
+  <Footer />
+
 </template>
 
 

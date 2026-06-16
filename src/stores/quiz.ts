@@ -6,7 +6,7 @@ interface Quiz {
   _id: string
   title: string
   description: string
-  duration: number
+  duratyion: number
 }
 
 export const useQuizStore = defineStore("quiz", {
