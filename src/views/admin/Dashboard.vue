@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue"
 import api from "@/services/api"
 import navbar from "@/components/navbar.vue" 
-import Footer from "@/components/footer.vue"
+import Footer from "@/components/Footer.vue"
 
 const stats = ref<any>(null)
 const leaderboard = ref<any[]>([])

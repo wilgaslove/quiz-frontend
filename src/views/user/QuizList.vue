@@ -2,6 +2,8 @@
 import { ref, onMounted } from "vue"
 import api from "@/services/api"
 // import navbar form "@/components"
+import Footer from "@/components/Footer.vue"
+
 
 const quizzes = ref([])
 
@@ -20,4 +22,5 @@ onMounted(async () => {
       <button @click="$router.push(`/quiz/${quiz._id}`)">Commencer</button>
     </div>
   </div>
+  <Footer />
 </template>

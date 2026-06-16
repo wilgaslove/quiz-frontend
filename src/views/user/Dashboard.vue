@@ -5,7 +5,8 @@ import { useRouter } from "vue-router"
 import navbar from "@/components/navbar.vue"
 import { useAuthStore } from "@/stores/auth"
 import { useThemeStore } from "@/stores/theme"
-import Footer from "@/components/footer.vue"
+import Footer from "@/components/Footer.vue"
+
 
 
 const quizStore = useQuizStore()

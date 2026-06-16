@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from "vue"
 import { useRoute } from "vue-router"
 import api from "@/services/api"
-
+import Footer from "@/components/Footer.vue"
 const route = useRoute()
 
 const quiz = ref<any>(null)
@@ -167,4 +167,5 @@ onUnmounted(() => {
   </div>
 
   </div>
+  <Footer />
 </template>
