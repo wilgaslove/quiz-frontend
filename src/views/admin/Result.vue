@@ -1,4 +1,6 @@
 <script>
+import navbar from "@/components/navbar.vue"
+import Footer from "@/components/footer.vue"
 
 export default {
 
@@ -27,7 +29,7 @@ export default {
 </script>
 
 <template>
-
+    <navbar />
     <div>
 
         <h1>Résultat du Quiz</h1>
@@ -38,5 +40,6 @@ export default {
         </div>
 
     </div>
+    <Footer />
 
 </template>

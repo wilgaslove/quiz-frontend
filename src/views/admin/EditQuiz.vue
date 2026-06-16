@@ -2,6 +2,8 @@
 import { ref, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import api from "@/services/api"
+import navbar from "@/components/navbar.vue"
+import Footer from "@/components/footer.vue"
 
 const route = useRoute()
 const router = useRouter()
@@ -91,6 +93,9 @@ onMounted(loadQuiz)
     <button @click="updateQuiz">Mettre à jour</button>
   </div> -->
 
+  <navbar />
+
+
   <div v-if="quiz">
 
     <h1>Modifier Quiz</h1>
@@ -136,4 +141,5 @@ onMounted(loadQuiz)
     <button @click="updateQuiz">Mettre à jour</button>
 
   </div>
+  <Footer />
 </template>

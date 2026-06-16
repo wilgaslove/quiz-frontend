@@ -3,6 +3,7 @@ import { onMounted, ref } from "vue"
 import { useRouter } from "vue-router"
 import api from "@/services/api"
 import navbar from "@/components/navbar.vue"
+import Footer from "@/components/footer.vue"
 
 // const quizzes = ref([])
 const quizzes = ref<{ _id: string; title: string }[]>([])
@@ -47,4 +48,5 @@ onMounted(loadQuizzes)
       <button @click="deleteQuiz(quiz._id)">Supprimer</button>
     </div>
   </div>
+  <Footer />
 </template>

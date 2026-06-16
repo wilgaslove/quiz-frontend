@@ -2,6 +2,8 @@
 import { ref, onMounted, onUnmounted } from "vue"
 import { useRoute } from "vue-router"
 import api from "@/services/api"
+import navbar from "@/components/navbar.vue"
+import Footer from "@/components/footer.vue"
 
 const route = useRoute()
 
@@ -200,4 +202,6 @@ onUnmounted(() => {
     </div>
 
   </div>
+  <Footer />
+
 </template>

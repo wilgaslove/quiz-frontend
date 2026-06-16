@@ -3,7 +3,7 @@ import { ref } from "vue"
 import { useRouter } from "vue-router"
 import api from "@/services/api"
 import navbar from "@/components/navbar.vue"
-import footer from "@/components/footer.vue"
+import Footer from "@/components/footer.vue"
 
 const router = useRouter()
 
@@ -112,6 +112,8 @@ const addOption = (qIndex: number) => {
       </button>
     </div>
   </div>
+
+  <Footer />
 </template>
 
 <style scoped></style>
