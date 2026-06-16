@@ -33,4 +33,6 @@ const authStore = useAuthStore()
         </div>
     </nav>
 
+    
+
 </template>
